@@ -4,7 +4,7 @@ import { cameraWithTensors } from "@tensorflow/tfjs-react-native";
 import labels from "../utils/labels.json";
 
 import React, { useState } from "react";
-import { Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 const TensorCamera = cameraWithTensors(Camera);
 let textureDims = Platform.OS == 'ios' ? { height: 2000, width: 1000 } : { height: 1200, width: 1600 };
@@ -51,23 +51,43 @@ const CameraView = ({ model, inputTensorSize }) => {
     };
 
     return (
-        <>
-            <TensorCamera
-                // Standard Camera props
-                style={{ zIndex: 0, width: 500, height: 500 }}
+        <View style={styles.container}>
+            <View>
+                <TensorCamera
+                    // Standard Camera props
+                    style={{ zIndex: 0, width: 500, height: 500 }}
 
-                // Tensor related props
-                cameraTextureHeight={textureDims.height}
-                cameraTextureWidth={textureDims.width}
-                resizeHeight={inputTensorSize[1]}
-                resizeWidth={inputTensorSize[2]}
-                resizeDepth={inputTensorSize[3]}
-                onReady={cameraStream}
-                autorender={true}
-            />
-            <Text>ClassName : {klassName}</Text>
-        </>
+                    // Tensor related props
+                    cameraTextureHeight={textureDims.height}
+                    cameraTextureWidth={textureDims.width}
+                    resizeHeight={inputTensorSize[1]}
+                    resizeWidth={inputTensorSize[2]}
+                    resizeDepth={inputTensorSize[3]}
+                    onReady={cameraStream}
+                    autorender={true}
+                />
+            </View>
+            <View style={styles.predictionContainer}>
+                <Text style={{ fontSize: 35, color: 'red', fontWeight: 'bold' }}>ClassName : {klassName}</Text>
+            </View>
+
+        </View>
     );
 };
 
 export default CameraView;
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        // justifyContent: 'center',
+        // alignItems: 'center',
+        backgroundColor: 'black',
+    },
+    predictionContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#494949',
+    },
+})

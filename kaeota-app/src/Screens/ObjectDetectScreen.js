@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { Camera } from 'expo-camera'
 import { StatusBar } from 'expo-status-bar'
 import * as tf from "@tensorflow/tfjs";
 import "@tensorflow/tfjs-react-native";
@@ -19,7 +18,7 @@ const ObjectDetectScreen = () => {
         require("../../assets/model/general_object_web_model/group1-shard7of7.bin"),
     ];
 
-    const [hasPermission, setHasPermission] = useState(null);
+    // const [hasPermission, setHasPermission] = useState(null);
     // const [type, setType] = useState("back");
     const [model, setModel] = useState(null);
     const [inputTensor, setInputTensor] = useState([]);
@@ -30,8 +29,8 @@ const ObjectDetectScreen = () => {
 
     useEffect(() => {
         (async () => {
-            const { status } = await Camera.requestCameraPermissionsAsync();
-            setHasPermission(status === "granted");
+            // const { status } = await Camera.requestCameraPermissionsAsync();
+            // setHasPermission(status === "granted");
             tf.ready().then(() => {
                 loadModel(modelJson, modelWeights).then(async (loadedModel) => {
                     // warming up model

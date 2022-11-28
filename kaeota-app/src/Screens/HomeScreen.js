@@ -8,6 +8,18 @@ export default function HomeScreen({ navigation }) {
             <View style={styles.buttonContainer}>
                 <TouchableOpacity
                     style={styles.button}
+                    onPress={() => navigation.navigate('Obstruction')}
+                    accessible={true} // optional, this is the default
+                    accessibilityLabel={'ปุ่มตรวจจับสิ่งกีดขวาง'} // overrides child content
+                    accessibilityTraits={'Obstruction Detection button'} // only works in ios
+                    accessibilityComponentType={'Obstruction Detection button'} // only works in android
+                    accessibilityHint={'แตะ 2 ครั้ง เพื่อเปิด'}
+                    accessibilityState={{ 'selected': true }}
+                >
+                    <Text style={styles.textButton}>สิ่งกีดขวาง</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.button}
                     onPress={() => navigation.navigate('Object')}
                     accessible={true} // optional, this is the default
                     accessibilityLabel={'ปุ่มตรวจจับวัตถุ'} // overrides child content

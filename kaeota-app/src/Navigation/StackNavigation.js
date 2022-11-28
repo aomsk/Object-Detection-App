@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 //import screens
 import HomeScreen from '../Screens/HomeScreen'
+import ObstructionDetectScreen from '../Screens/ObstructionDetectScreen'
 import ObjectDetectScreen from '../Screens/ObjectDetectScreen'
 import MoneyDetectScreen from '../Screens/MoneyDetectScreen'
 
@@ -15,6 +16,7 @@ const StackNavigation = () => {
         <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen name='Home' component={HomeScreen} />
+                <Stack.Screen name='Obstruction' component={ObstructionDetectScreen} />
                 <Stack.Screen name='Object' component={ObjectDetectScreen} />
                 <Stack.Screen name='Money' component={MoneyDetectScreen} />
             </Stack.Navigator>
