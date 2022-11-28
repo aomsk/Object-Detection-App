@@ -28,9 +28,23 @@ const ObjectDetectScreen = () => {
     const configurations = { threshold: 0.25 };
 
     useEffect(() => {
-        (async () => {
-            // const { status } = await Camera.requestCameraPermissionsAsync();
-            // setHasPermission(status === "granted");
+        // (async () => {
+        //     tf.ready().then(() => {
+        //         loadModel(modelJson, modelWeights).then(async (loadedModel) => {
+        //             // warming up model
+        //             const dummyInput = tf.ones(loadedModel.inputs[0].shape);
+        //             console.log('dummyInput: ', dummyInput);
+        //             await loadedModel.executeAsync(dummyInput);
+        //             tf.dispose(dummyInput);
+
+        //             // set state
+        //             setInputTensor(loadedModel.inputs[0].shape);
+        //             setModel(loadedModel);
+        //         });
+        //     });
+        // })();
+
+        async function setUpModel() {
             tf.ready().then(() => {
                 loadModel(modelJson, modelWeights).then(async (loadedModel) => {
                     // warming up model
@@ -44,7 +58,8 @@ const ObjectDetectScreen = () => {
                     setModel(loadedModel);
                 });
             });
-        })();
+        }
+        setUpModel()
     }, []);
 
     return (
