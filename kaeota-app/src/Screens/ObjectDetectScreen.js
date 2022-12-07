@@ -76,7 +76,7 @@ const ObjectDetectScreen = () => {
                         </View>
                     </View>
                 ) : (
-                    <Text>Loading model...</Text>
+                    <Text>Loading Object Model...</Text>
                 )}
             </>
             <StatusBar style="auto" />

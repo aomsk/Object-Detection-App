@@ -10,15 +10,14 @@ import ObjectDetectScreen from '../Screens/ObjectDetectScreen'
 import MoneyDetectScreen from '../Screens/MoneyDetectScreen'
 
 const StackNavigation = () => {
-
-    const Stack = createNativeStackNavigator();
+    const Stack = createNativeStackNavigator()
     return (
         <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen name='Home' component={HomeScreen} />
-                <Stack.Screen name='Obstruction' component={ObstructionDetectScreen} />
-                <Stack.Screen name='Object' component={ObjectDetectScreen} />
-                <Stack.Screen name='Money' component={MoneyDetectScreen} />
+                <Stack.Screen name="Home" component={HomeScreen} />
+                <Stack.Screen name="Obstruction" component={ObstructionDetectScreen} />
+                <Stack.Screen name="Object" component={ObjectDetectScreen} />
+                <Stack.Screen name="Money" component={MoneyDetectScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     )
