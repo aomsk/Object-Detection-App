@@ -66,7 +66,7 @@ export default function ObstructionDetectScreen() {
                         </View>
                     </View>
                 ) : (
-                    <Text>Loading Money Model...</Text>
+                    <Text>Loading Obstruction Model...</Text>
                 )}
             </View>
             <StatusBar style="auto" />
