@@ -4,7 +4,7 @@ import { cameraWithTensors } from '@tensorflow/tfjs-react-native'
 import labels from '../utils/labels.json'
 
 import React, { useState } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, useWindowDimensions } from 'react-native'
 
 const TensorCamera = cameraWithTensors(Camera)
 let textureDims =
@@ -14,6 +14,9 @@ let textureDims =
 
 const CameraView = ({ model, inputTensorSize }) => {
     const threshold = 0.25
+
+    const size = useWindowDimensions();
+    // console.log('size: ', size);
 
     const [klassName, setKlassName] = useState('')
 
@@ -41,7 +44,7 @@ const CameraView = ({ model, inputTensorSize }) => {
                         const klass = labels[classes_data[i]]
                         const score = (scores_data[i] * 100).toFixed(1)
 
-                        console.log('klass: ', [klass, score])
+                        console.log('Class: ', [klass, score])
                         setKlassName(klass)
                     }
                 }
@@ -58,10 +61,12 @@ const CameraView = ({ model, inputTensorSize }) => {
 
     return (
         <View style={styles.container}>
-            <View>
+            <View style={{ flex: 2 }}>
                 <TensorCamera
                     // Standard Camera props
-                    style={{ zIndex: 0, width: 500, height: 500 }}
+                    width={size.width}
+                    height={size.height}
+                    style={{ zIndex: 0 }}
                     // Tensor related props
                     cameraTextureHeight={textureDims.height}
                     cameraTextureWidth={textureDims.width}

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, useWindowDimensions } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar'
 
@@ -83,6 +83,9 @@ let textureDims =
 const CameraView = ({ model, inputTensorSize }) => {
     const threshold = 0.25
 
+    const size = useWindowDimensions();
+    // console.log('size: ', size);
+
     const [klassName, setKlassName] = useState('')
 
     const cameraStream = (images) => {
@@ -105,7 +108,7 @@ const CameraView = ({ model, inputTensorSize }) => {
                         const klass = labels_Obstruction[classes_data[i]]
                         const score = (scores_data[i] * 100).toFixed(1)
 
-                        console.log('klass: ', [klass, score])
+                        console.log('Class: ', [klass, score])
                         setKlassName(klass)
                     }
                 }
@@ -121,10 +124,12 @@ const CameraView = ({ model, inputTensorSize }) => {
     }
     return (
         <View>
-            <View>
+            <View style={{ flex: 2 }}>
                 <TensorCamera
                     // Standard Camera props
-                    style={{ zIndex: 0, width: 500, height: 500 }}
+                    width={size.width}
+                    height={size.height}
+                    style={{ zIndex: 0 }}
                     // Tensor related props
                     cameraTextureHeight={textureDims.height}
                     cameraTextureWidth={textureDims.width}

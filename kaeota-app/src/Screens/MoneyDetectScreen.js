@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, useWindowDimensions, NativeModules } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar'
 
@@ -14,7 +14,11 @@ import { Camera } from 'expo-camera'
 import { cameraWithTensors } from '@tensorflow/tfjs-react-native'
 import labels_Money from '../utils/labels_Money.json'
 
+//Speech
+import * as Speech from 'expo-speech'
+
 export default function MoneyDetectScreen() {
+
     const modelJson = require('../../assets/model/money_web_model/model.json')
     const modelWeights = [
         require('../../assets/model/money_web_model/group1-shard1of7.bin'),
@@ -49,6 +53,18 @@ export default function MoneyDetectScreen() {
                 })
             })
         }
+
+        // async function checkLocalLanguage() {
+        //     // iOS:
+        //     const locale_lang_ios = NativeModules.SettingsManager.settings.AppleLocale ||
+        //         NativeModules.SettingsManager.settings.AppleLanguages[0]
+
+        //     setLocalLanguage_ios(locale_lang_ios.slice(0, 2))
+        //     console.log('setLocalLanguage_ios: ', localLanguage_ios);
+
+        //     // Android:
+        //     // const locale_lang_android = NativeModules.I18nManager.localeIdentifier
+        // }
         setUpModel()
     }, [])
 
@@ -74,6 +90,15 @@ export default function MoneyDetectScreen() {
     )
 }
 
+// iOS:
+const locale_lang_ios = NativeModules.SettingsManager.settings.AppleLocale ||
+    NativeModules.SettingsManager.settings.AppleLanguages[0]
+
+console.log('locale_lang_ios: ', locale_lang_ios);
+
+// Android:
+// const locale_lang_android = NativeModules.I18nManager.localeIdentifier
+
 const TensorCamera = cameraWithTensors(Camera)
 let textureDims =
     Platform.OS == 'ios'
@@ -84,6 +109,8 @@ const CameraView = ({ model, inputTensorSize }) => {
     const threshold = 0.25
 
     const [klassName, setKlassName] = useState('')
+    const size = useWindowDimensions();
+    // console.log('size: ', size);
 
     const cameraStream = (images) => {
         const detectFrame = async () => {
@@ -105,8 +132,53 @@ const CameraView = ({ model, inputTensorSize }) => {
                         const klass = labels_Money[classes_data[i]]
                         const score = (scores_data[i] * 100).toFixed(1)
 
-                        console.log('klass: ', [klass, score])
+                        console.log('Class: ', [klass, score])
                         setKlassName(klass)
+
+                        if (locale_lang_ios.slice(0, 2) === 'th') {
+                            if (klass == 'Twenty Baht') {
+                                Speech.speak('ธนบัตรยี่สิบบาท',
+                                    {
+                                        language: locale_lang_ios,
+                                    }
+                                );
+                            }
+                            if (klass == 'Fifty Baht') {
+                                Speech.speak('ธนบัตรห้าสิบบาท',
+                                    {
+                                        language: locale_lang_ios,
+                                    }
+                                );
+                            }
+                            if (klass == 'One Hundred Baht') {
+                                Speech.speak('ธนบัตรหนึ่งร้อยบาท',
+                                    {
+                                        language: locale_lang_ios,
+                                    }
+                                );
+                            }
+                            if (klass == 'Five Hundred Baht') {
+                                Speech.speak('ธนบัตรห้าร้อยบาท',
+                                    {
+                                        language: locale_lang_ios,
+                                    }
+                                );
+                            }
+                            if (klass == 'One Thousand Baht') {
+                                Speech.speak('ธนบัตรหนึ่งพันบาท',
+                                    {
+                                        language: locale_lang_ios,
+                                    }
+                                );
+                            }
+                        }
+                        else {
+                            Speech.speak(klass,
+                                {
+                                    language: locale_lang_ios.slice(0, 2),
+                                }
+                            );
+                        }
                     }
                 }
 
@@ -121,10 +193,12 @@ const CameraView = ({ model, inputTensorSize }) => {
     }
     return (
         <View>
-            <View>
+            <View style={{ flex: 2 }}>
                 <TensorCamera
                     // Standard Camera props
-                    style={{ zIndex: 0, width: 500, height: 500 }}
+                    width={size.width}
+                    height={size.height}
+                    style={{ zIndex: 0 }}
                     // Tensor related props
                     cameraTextureHeight={textureDims.height}
                     cameraTextureWidth={textureDims.width}
@@ -136,7 +210,7 @@ const CameraView = ({ model, inputTensorSize }) => {
                 />
             </View>
             <View style={styles.predictionContainer}>
-                <Text style={{ fontSize: 35, color: 'red', fontWeight: 'bold' }}>
+                <Text style={{ fontSize: 20, color: 'red', fontWeight: 'bold' }}>
                     ClassName : {klassName}
                 </Text>
             </View>
