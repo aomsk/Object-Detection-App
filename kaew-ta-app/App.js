@@ -3,6 +3,7 @@ import { StyleSheet, Button, View } from 'react-native';
 import { StatusBar } from "expo-status-bar";
 
 import { LoadingView } from './src/utils/LoadingView';
+
 //import Navigation
 import StackNavigation from './src/Navigation/StackNavigation';
 

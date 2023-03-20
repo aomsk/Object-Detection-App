@@ -5,6 +5,7 @@ export default function HomeScreen({ navigation }) {
     return (
         <View style={styles.container}>
             <Text style={{ fontSize: 40, textAlign: 'center', margin: 30 }}>Main Menu</Text>
+
             <View style={styles.buttonContainer}>
                 <TouchableOpacity
                     style={styles.button}

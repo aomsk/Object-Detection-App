@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, useWindowDimensions } from 'react-native'
+import { StyleSheet, Text, View, useWindowDimensions, NativeModules } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar'
 
@@ -12,7 +12,12 @@ import '@tensorflow/tfjs-react-native'
 //Camera
 import { Camera } from 'expo-camera'
 import { cameraWithTensors } from '@tensorflow/tfjs-react-native'
+
+//Lables
 import labels_Obstruction from '../utils/labels_Obstruction.json'
+
+//Speech
+import * as Speech from 'expo-speech'
 
 export default function ObstructionDetectScreen() {
     const modelJson = require('../../assets/model/obstruction_web_model/model.json')
@@ -74,6 +79,16 @@ export default function ObstructionDetectScreen() {
     )
 }
 
+// Check local language of mobile
+// iOS:
+const locale_lang_ios = NativeModules.SettingsManager.settings.AppleLocale ||
+    NativeModules.SettingsManager.settings.AppleLanguages[0]
+console.log('locale_lang_ios: ', locale_lang_ios);
+
+// Android:
+const locale_lang_android = NativeModules.I18nManager.localeIdentifier
+console.log('locale_lang_android: ', locale_lang_android);
+
 const TensorCamera = cameraWithTensors(Camera)
 let textureDims =
     Platform.OS == 'ios'
@@ -110,6 +125,85 @@ const CameraView = ({ model, inputTensorSize }) => {
 
                         console.log('Class: ', [klass, score])
                         setKlassName(klass)
+
+                        if (Platform.OS === 'ios') {
+                            if (locale_lang_ios.slice(0, 2) === 'th') {
+                                if (klass == 'BillBoard') {
+                                    Speech.speak('ป้ายโฆษณา',
+                                        {
+                                            language: 'th',
+                                        }
+                                    );
+                                }
+                                if (klass == 'Electric') {
+                                    Speech.speak('เสาไฟฟ้า',
+                                        {
+                                            language: 'th',
+                                        }
+                                    );
+                                }
+                                if (klass == 'Sofa') {
+                                    Speech.speak('โซฟา',
+                                        {
+                                            language: 'th',
+                                        }
+                                    );
+                                }
+                                if (klass == 'Table') {
+                                    Speech.speak('โต๊ะ',
+                                        {
+                                            language: 'th',
+                                        }
+                                    );
+                                }
+                            }
+                            else {
+                                Speech.speak(klass,
+                                    {
+                                        language: 'en',
+                                    }
+                                );
+                            }
+                        }
+                        if (Platform.OS === 'android') {
+                            if (locale_lang_android.slice(0, 2) === 'th') {
+                                if (klass == 'BillBoard') {
+                                    Speech.speak('ป้ายโฆษณา',
+                                        {
+                                            language: 'th',
+                                        }
+                                    );
+                                }
+                                if (klass == 'Electric') {
+                                    Speech.speak('เสาไฟฟ้า',
+                                        {
+                                            language: 'th',
+                                        }
+                                    );
+                                }
+                                if (klass == 'Sofa') {
+                                    Speech.speak('โซฟา',
+                                        {
+                                            language: 'th',
+                                        }
+                                    );
+                                }
+                                if (klass == 'Table') {
+                                    Speech.speak('โต๊ะ',
+                                        {
+                                            language: 'th',
+                                        }
+                                    );
+                                }
+                            }
+                            else {
+                                Speech.speak(klass,
+                                    {
+                                        language: 'en',
+                                    }
+                                );
+                            }
+                        }
                     }
                 }
 
