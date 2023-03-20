@@ -12,6 +12,8 @@ import '@tensorflow/tfjs-react-native'
 //Camera
 import { Camera } from 'expo-camera'
 import { cameraWithTensors } from '@tensorflow/tfjs-react-native'
+
+//Lables
 import labels_Money from '../utils/labels_Money.json'
 
 //Speech
@@ -54,17 +56,6 @@ export default function MoneyDetectScreen() {
             })
         }
 
-        // async function checkLocalLanguage() {
-        //     // iOS:
-        //     const locale_lang_ios = NativeModules.SettingsManager.settings.AppleLocale ||
-        //         NativeModules.SettingsManager.settings.AppleLanguages[0]
-
-        //     setLocalLanguage_ios(locale_lang_ios.slice(0, 2))
-        //     console.log('setLocalLanguage_ios: ', localLanguage_ios);
-
-        //     // Android:
-        //     // const locale_lang_android = NativeModules.I18nManager.localeIdentifier
-        // }
         setUpModel()
     }, [])
 
@@ -90,14 +81,15 @@ export default function MoneyDetectScreen() {
     )
 }
 
+// Check local language of mobile
 // iOS:
 const locale_lang_ios = NativeModules.SettingsManager.settings.AppleLocale ||
     NativeModules.SettingsManager.settings.AppleLanguages[0]
-
 console.log('locale_lang_ios: ', locale_lang_ios);
 
 // Android:
-// const locale_lang_android = NativeModules.I18nManager.localeIdentifier
+const locale_lang_android = NativeModules.I18nManager.localeIdentifier
+console.log('locale_lang_android: ', locale_lang_android);
 
 const TensorCamera = cameraWithTensors(Camera)
 let textureDims =
@@ -135,49 +127,97 @@ const CameraView = ({ model, inputTensorSize }) => {
                         console.log('Class: ', [klass, score])
                         setKlassName(klass)
 
-                        if (locale_lang_ios.slice(0, 2) === 'th') {
-                            if (klass == 'Twenty Baht') {
-                                Speech.speak('ธนบัตรยี่สิบบาท',
-                                    {
-                                        language: locale_lang_ios,
-                                    }
-                                );
+                        if (Platform.OS === 'ios') {
+                            if (locale_lang_ios.slice(0, 2) === 'th') {
+                                if (klass == 'Twenty Baht') {
+                                    Speech.speak('ธนบัตรยี่สิบบาท',
+                                        {
+                                            language: 'th',
+                                        }
+                                    );
+                                }
+                                if (klass == 'Fifty Baht') {
+                                    Speech.speak('ธนบัตรห้าสิบบาท',
+                                        {
+                                            language: 'th',
+                                        }
+                                    );
+                                }
+                                if (klass == 'One Hundred Baht') {
+                                    Speech.speak('ธนบัตรหนึ่งร้อยบาท',
+                                        {
+                                            language: 'th',
+                                        }
+                                    );
+                                }
+                                if (klass == 'Five Hundred Baht') {
+                                    Speech.speak('ธนบัตรห้าร้อยบาท',
+                                        {
+                                            language: 'th',
+                                        }
+                                    );
+                                }
+                                if (klass == 'One Thousand Baht') {
+                                    Speech.speak('ธนบัตรหนึ่งพันบาท',
+                                        {
+                                            language: 'th',
+                                        }
+                                    );
+                                }
                             }
-                            if (klass == 'Fifty Baht') {
-                                Speech.speak('ธนบัตรห้าสิบบาท',
+                            else {
+                                Speech.speak(klass,
                                     {
-                                        language: locale_lang_ios,
-                                    }
-                                );
-                            }
-                            if (klass == 'One Hundred Baht') {
-                                Speech.speak('ธนบัตรหนึ่งร้อยบาท',
-                                    {
-                                        language: locale_lang_ios,
-                                    }
-                                );
-                            }
-                            if (klass == 'Five Hundred Baht') {
-                                Speech.speak('ธนบัตรห้าร้อยบาท',
-                                    {
-                                        language: locale_lang_ios,
-                                    }
-                                );
-                            }
-                            if (klass == 'One Thousand Baht') {
-                                Speech.speak('ธนบัตรหนึ่งพันบาท',
-                                    {
-                                        language: locale_lang_ios,
+                                        language: 'en',
                                     }
                                 );
                             }
                         }
-                        else {
-                            Speech.speak(klass,
-                                {
-                                    language: locale_lang_ios.slice(0, 2),
+                        if (Platform.OS === 'android') {
+                            if (locale_lang_android.slice(0, 2) === 'th') {
+                                if (klass == 'Twenty Baht') {
+                                    Speech.speak('ธนบัตรยี่สิบบาท',
+                                        {
+                                            language: 'th',
+                                        }
+                                    );
                                 }
-                            );
+                                if (klass == 'Fifty Baht') {
+                                    Speech.speak('ธนบัตรห้าสิบบาท',
+                                        {
+                                            language: 'th',
+                                        }
+                                    );
+                                }
+                                if (klass == 'One Hundred Baht') {
+                                    Speech.speak('ธนบัตรหนึ่งร้อยบาท',
+                                        {
+                                            language: 'th',
+                                        }
+                                    );
+                                }
+                                if (klass == 'Five Hundred Baht') {
+                                    Speech.speak('ธนบัตรห้าร้อยบาท',
+                                        {
+                                            language: 'th',
+                                        }
+                                    );
+                                }
+                                if (klass == 'One Thousand Baht') {
+                                    Speech.speak('ธนบัตรหนึ่งพันบาท',
+                                        {
+                                            language: 'th',
+                                        }
+                                    );
+                                }
+                            }
+                            else {
+                                Speech.speak(klass,
+                                    {
+                                        language: 'en',
+                                    }
+                                );
+                            }
                         }
                     }
                 }
