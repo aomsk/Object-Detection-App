@@ -1,7 +1,7 @@
 import { Camera, CameraType } from 'expo-camera'
 import * as tf from '@tensorflow/tfjs'
 import { cameraWithTensors } from '@tensorflow/tfjs-react-native'
-import labels from '../utils/labels.json'
+import labels_Object from '../utils/labels_Object.json'
 
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, useWindowDimensions } from 'react-native'
@@ -41,7 +41,7 @@ const CameraView = ({ model, inputTensorSize }) => {
 
                 for (let i = 0; i < scores_data.length; ++i) {
                     if (scores_data[i] > threshold) {
-                        const klass = labels[classes_data[i]]
+                        const klass = labels_Object[classes_data[i]]
                         const score = (scores_data[i] * 100).toFixed(1)
 
                         console.log('Class: ', [klass, score])
