@@ -17,7 +17,7 @@ export default function HomeScreen({ navigation }) {
                     accessibilityHint={'แตะ 2 ครั้ง เพื่อเปิด'}
                     accessibilityState={{ 'selected': true }}
                 >
-                    <Text style={styles.textButton}>สิ่งกีดขวาง</Text>
+                    <Text style={styles.textButton}>Obstruction</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.button}
@@ -29,7 +29,7 @@ export default function HomeScreen({ navigation }) {
                     accessibilityHint={'แตะ 2 ครั้ง เพื่อเปิด'}
                     accessibilityState={{ 'selected': true }}
                 >
-                    <Text style={styles.textButton}>วัตถุ</Text>
+                    <Text style={styles.textButton}>Object</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.button}
@@ -41,7 +41,7 @@ export default function HomeScreen({ navigation }) {
                     accessibilityHint={'แตะ 2 ครั้ง เพื่อเปิด'}
                     accessibilityState={{ 'selected': true }}
                 >
-                    <Text style={styles.textButton}>ธนบัตร</Text>
+                    <Text style={styles.textButton}>Money & Coin</Text>
                 </TouchableOpacity>
             </View>
         </View>
