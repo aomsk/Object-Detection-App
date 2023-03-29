@@ -20,7 +20,7 @@ import labels_Money from '../utils/labels_Money.json'
 import * as Speech from 'expo-speech'
 
 //Global Styles
-import global, { globalStyles } from '../../styles/global';
+import { globalStyles } from '../../styles/global';
 
 export default function MoneyDetectScreen() {
 

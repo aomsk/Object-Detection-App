@@ -20,7 +20,7 @@ import labels_Obstruction from '../utils/labels_Obstruction.json'
 import * as Speech from 'expo-speech'
 
 //Global Styles
-import global, { globalStyles } from '../../styles/global';
+import { globalStyles } from '../../styles/global';
 
 export default function ObstructionDetectScreen() {
     const modelJson = require('../../assets/model/obstruction_web_model/model.json')

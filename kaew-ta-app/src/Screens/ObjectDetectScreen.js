@@ -20,7 +20,7 @@ import labels_Object from '../utils/labels_Object.json'
 import * as Speech from 'expo-speech'
 
 //Global Styles
-import global, { globalStyles } from '../../styles/global';
+import { globalStyles } from '../../styles/global';
 
 const ObjectDetectScreen = () => {
     const modelJson = require("../../assets/model/general_object_web_model/model.json");
