@@ -19,6 +19,9 @@ import labels_Obstruction from '../utils/labels_Obstruction.json'
 //Speech
 import * as Speech from 'expo-speech'
 
+//Global Styles
+import global, { globalStyles } from '../../styles/global';
+
 export default function ObstructionDetectScreen() {
     const modelJson = require('../../assets/model/obstruction_web_model/model.json')
     const modelWeights = [
@@ -58,7 +61,7 @@ export default function ObstructionDetectScreen() {
     }, [])
 
     return (
-        <View style={styles.container}>
+        <View style={globalStyles.container}>
             <View>
                 {model ? (
                     <View style={{ flex: 1, alignItems: 'center' }}>
@@ -234,8 +237,8 @@ const CameraView = ({ model, inputTensorSize }) => {
                     autorender={true}
                 />
             </View>
-            <View style={styles.predictionContainer}>
-                <Text style={{ fontSize: 35, color: 'red', fontWeight: 'bold' }}>
+            <View style={globalStyles.predictionContainer}>
+                <Text style={{ fontSize: 30, color: 'red', fontWeight: 'bold' }}>
                     ClassName : {klassName}
                 </Text>
             </View>
@@ -243,17 +246,17 @@ const CameraView = ({ model, inputTensorSize }) => {
     )
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#fff',
-    },
-    predictionContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#494949',
-    },
-})
+// const styles = StyleSheet.create({
+//     container: {
+//         flex: 1,
+//         justifyContent: 'center',
+//         alignItems: 'center',
+//         backgroundColor: '#fff',
+//     },
+//     predictionContainer: {
+//         flex: 1,
+//         justifyContent: 'center',
+//         alignItems: 'center',
+//         backgroundColor: '#494949',
+//     },
+// })
