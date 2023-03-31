@@ -130,98 +130,97 @@ const CameraView = ({ model, inputTensorSize }) => {
                         console.log('Class: ', [klass, score])
                         setKlassName(klass)
 
-                        if (Platform.OS === 'ios') {
-                            if (locale_lang_ios.slice(0, 2) === 'th') {
-                                if (klass == 'Twenty Baht') {
-                                    Speech.speak('ธนบัตรยี่สิบบาท',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
-                                }
-                                if (klass == 'Fifty Baht') {
-                                    Speech.speak('ธนบัตรห้าสิบบาท',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
-                                }
-                                if (klass == 'One Hundred Baht') {
-                                    Speech.speak('ธนบัตรหนึ่งร้อยบาท',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
-                                }
-                                if (klass == 'Five Hundred Baht') {
-                                    Speech.speak('ธนบัตรห้าร้อยบาท',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
-                                }
-                                if (klass == 'One Thousand Baht') {
-                                    Speech.speak('ธนบัตรหนึ่งพันบาท',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
-                                }
-                            }
-                            else {
-                                Speech.speak(klass,
+                        // Platfrom IOS
+                        if (Platform.OS === 'ios' && locale_lang_ios.slice(0, 2) === 'th') {
+                            if (klass == 'Twenty Baht') {
+                                Speech.speak('ธนบัตรยี่สิบบาท',
                                     {
-                                        language: 'en',
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'Fifty Baht') {
+                                Speech.speak('ธนบัตรห้าสิบบาท',
+                                    {
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'One Hundred Baht') {
+                                Speech.speak('ธนบัตรหนึ่งร้อยบาท',
+                                    {
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'Five Hundred Baht') {
+                                Speech.speak('ธนบัตรห้าร้อยบาท',
+                                    {
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'One Thousand Baht') {
+                                Speech.speak('ธนบัตรหนึ่งพันบาท',
+                                    {
+                                        language: 'th',
                                     }
                                 );
                             }
                         }
-                        if (Platform.OS === 'android') {
-                            if (locale_lang_android.slice(0, 2) === 'th') {
-                                if (klass == 'Twenty Baht') {
-                                    Speech.speak('ธนบัตรยี่สิบบาท',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
+                        else if (Platform.OS === 'ios' && locale_lang_ios.slice(0, 2) !== 'th') {
+                            Speech.speak(klass,
+                                {
+                                    language: 'en',
                                 }
-                                if (klass == 'Fifty Baht') {
-                                    Speech.speak('ธนบัตรห้าสิบบาท',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
-                                }
-                                if (klass == 'One Hundred Baht') {
-                                    Speech.speak('ธนบัตรหนึ่งร้อยบาท',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
-                                }
-                                if (klass == 'Five Hundred Baht') {
-                                    Speech.speak('ธนบัตรห้าร้อยบาท',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
-                                }
-                                if (klass == 'One Thousand Baht') {
-                                    Speech.speak('ธนบัตรหนึ่งพันบาท',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
-                                }
-                            }
-                            else {
-                                Speech.speak(klass,
+                            );
+                        }
+
+                        // Platfrom Android
+                        else if (Platform.OS === 'android' && locale_lang_android.slice(0, 2) === 'th') {
+                            if (klass == 'Twenty Baht') {
+                                Speech.speak('ธนบัตรยี่สิบบาท',
                                     {
-                                        language: 'en',
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'Fifty Baht') {
+                                Speech.speak('ธนบัตรห้าสิบบาท',
+                                    {
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'One Hundred Baht') {
+                                Speech.speak('ธนบัตรหนึ่งร้อยบาท',
+                                    {
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'Five Hundred Baht') {
+                                Speech.speak('ธนบัตรห้าร้อยบาท',
+                                    {
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'One Thousand Baht') {
+                                Speech.speak('ธนบัตรหนึ่งพันบาท',
+                                    {
+                                        language: 'th',
                                     }
                                 );
                             }
                         }
+                        else if (Platform.OS === 'android' && locale_lang_android.slice(0, 2) !== 'th') {
+                            Speech.speak(klass,
+                                {
+                                    language: 'en',
+                                }
+                            );
+                        } // End if
                     }
                 }
 
