@@ -25,6 +25,9 @@ import { globalStyles } from '../../styles/global';
 // Expo Localization
 import { getLocales } from 'expo-localization';
 
+// I18n
+import { i18n } from "../../language/i18n";
+
 export default function ObjectDetectScreen() {
     const modelJson = require("../../assets/model/general_object_web_model/model.json");
     const modelWeights = [
@@ -107,6 +110,12 @@ export default function ObjectDetectScreen() {
 const deviceLanguage = getLocales()[0].languageCode;
 console.log('deviceLanguage: ', deviceLanguage);
 
+// Set the locale once at the beginning of your app.
+i18n.locale = deviceLanguage
+
+// When a value is missing from a language it'll fall back to another language with the key present.
+i18n.enableFallback = true
+
 const TensorCamera = cameraWithTensors(Camera)
 let textureDims =
     Platform.OS == 'ios'
@@ -148,23 +157,22 @@ const CameraView = ({ model, inputTensorSize }) => {
                         console.log('Class: ', [klass, score])
                         setKlassName(klass)
 
-                        // Platfrom IOS
-                        if (Platform.OS === 'ios' && deviceLanguage === 'th') {
-                            if (klass == 'Cup') {
+                        if (deviceLanguage === 'th') {
+                            if (klass == 'cup') {
                                 Speech.speak('แก้ว',
                                     {
                                         language: 'th',
                                     }
                                 );
                             }
-                            if (klass == 'Plate') {
+                            if (klass == 'plate') {
                                 Speech.speak('จาน',
                                     {
                                         language: 'th',
                                     }
                                 );
                             }
-                            if (klass == 'Spoon') {
+                            if (klass == 'spoon') {
                                 Speech.speak('ช้อน',
                                     {
                                         language: 'th',
@@ -172,39 +180,7 @@ const CameraView = ({ model, inputTensorSize }) => {
                                 );
                             }
                         }
-                        else if (Platform.OS === 'ios' && deviceLanguage !== 'th') {
-                            Speech.speak(klass,
-                                {
-                                    language: 'en',
-                                }
-                            );
-                        }
-
-                        // Platfrom Android
-                        else if (Platform.OS === 'android' && deviceLanguage === 'th') {
-                            if (klass == 'Cup') {
-                                Speech.speak('แก้ว',
-                                    {
-                                        language: 'th',
-                                    }
-                                );
-                            }
-                            if (klass == 'Plate') {
-                                Speech.speak('จาน',
-                                    {
-                                        language: 'th',
-                                    }
-                                );
-                            }
-                            if (klass == 'Spoon') {
-                                Speech.speak('ช้อน',
-                                    {
-                                        language: 'th',
-                                    }
-                                );
-                            }
-                        }
-                        else if (Platform.OS === 'android' && deviceLanguage !== 'th') {
+                        else {
                             Speech.speak(klass,
                                 {
                                     language: 'en',
@@ -244,7 +220,9 @@ const CameraView = ({ model, inputTensorSize }) => {
             </View>
             <View style={globalStyles.predictionContainer}>
                 <Text style={{ fontSize: 30, color: 'red', fontWeight: 'bold' }}>
-                    ClassName : {klassName}
+                    {/* ClassName : {klassName} */}
+                    {/* {i18n.t(klassName)} */}
+                    {i18n.t(klassName) !== '[missing "th." translation]' ? i18n.t(klassName) : null}
                 </Text>
             </View>
         </View>

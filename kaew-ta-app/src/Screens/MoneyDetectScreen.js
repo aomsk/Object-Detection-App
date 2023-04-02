@@ -25,6 +25,9 @@ import { globalStyles } from '../../styles/global';
 // Expo Localization
 import { getLocales } from 'expo-localization';
 
+// I18n
+import { i18n } from "../../language/i18n";
+
 export default function MoneyDetectScreen() {
 
     const modelJson = require('../../assets/model/money_web_model/model.json')
@@ -91,6 +94,12 @@ export default function MoneyDetectScreen() {
 const deviceLanguage = getLocales()[0].languageCode;
 console.log('deviceLanguage: ', deviceLanguage);
 
+// Set the locale once at the beginning of your app.
+i18n.locale = deviceLanguage
+
+// When a value is missing from a language it'll fall back to another language with the key present.
+i18n.enableFallback = true
+
 const TensorCamera = cameraWithTensors(Camera)
 let textureDims =
     Platform.OS == 'ios'
@@ -127,37 +136,36 @@ const CameraView = ({ model, inputTensorSize }) => {
                         console.log('Class: ', [klass, score])
                         setKlassName(klass)
 
-                        // Platfrom IOS
-                        if (Platform.OS === 'ios' && deviceLanguage === 'th') {
-                            if (klass == 'Twenty Baht') {
+                        if (deviceLanguage === 'th') {
+                            if (klass == 'twentyBaht') {
                                 Speech.speak('ธนบัตรยี่สิบบาท',
                                     {
                                         language: 'th',
                                     }
                                 );
                             }
-                            if (klass == 'Fifty Baht') {
+                            if (klass == 'fiftyBaht') {
                                 Speech.speak('ธนบัตรห้าสิบบาท',
                                     {
                                         language: 'th',
                                     }
                                 );
                             }
-                            if (klass == 'One Hundred Baht') {
+                            if (klass == 'oneHundredBaht') {
                                 Speech.speak('ธนบัตรหนึ่งร้อยบาท',
                                     {
                                         language: 'th',
                                     }
                                 );
                             }
-                            if (klass == 'Five Hundred Baht') {
+                            if (klass == 'fiveHundredBaht') {
                                 Speech.speak('ธนบัตรห้าร้อยบาท',
                                     {
                                         language: 'th',
                                     }
                                 );
                             }
-                            if (klass == 'One Thousand Baht') {
+                            if (klass == 'oneThousandBaht') {
                                 Speech.speak('ธนบัตรหนึ่งพันบาท',
                                     {
                                         language: 'th',
@@ -165,53 +173,7 @@ const CameraView = ({ model, inputTensorSize }) => {
                                 );
                             }
                         }
-                        else if (Platform.OS === 'ios' && deviceLanguage !== 'th') {
-                            Speech.speak(klass,
-                                {
-                                    language: 'en',
-                                }
-                            );
-                        }
-
-                        // Platfrom Android
-                        else if (Platform.OS === 'android' && deviceLanguage === 'th') {
-                            if (klass == 'Twenty Baht') {
-                                Speech.speak('ธนบัตรยี่สิบบาท',
-                                    {
-                                        language: 'th',
-                                    }
-                                );
-                            }
-                            if (klass == 'Fifty Baht') {
-                                Speech.speak('ธนบัตรห้าสิบบาท',
-                                    {
-                                        language: 'th',
-                                    }
-                                );
-                            }
-                            if (klass == 'One Hundred Baht') {
-                                Speech.speak('ธนบัตรหนึ่งร้อยบาท',
-                                    {
-                                        language: 'th',
-                                    }
-                                );
-                            }
-                            if (klass == 'Five Hundred Baht') {
-                                Speech.speak('ธนบัตรห้าร้อยบาท',
-                                    {
-                                        language: 'th',
-                                    }
-                                );
-                            }
-                            if (klass == 'One Thousand Baht') {
-                                Speech.speak('ธนบัตรหนึ่งพันบาท',
-                                    {
-                                        language: 'th',
-                                    }
-                                );
-                            }
-                        }
-                        else if (Platform.OS === 'android' && deviceLanguage !== 'th') {
+                        else {
                             Speech.speak(klass,
                                 {
                                     language: 'en',
@@ -250,7 +212,9 @@ const CameraView = ({ model, inputTensorSize }) => {
             </View>
             <View style={globalStyles.predictionContainer}>
                 <Text style={{ fontSize: 30, color: 'red', fontWeight: 'bold' }}>
-                    ClassName : {klassName}
+                    {/* ClassName : {klassName} */}
+                    {/* {i18n.t(klassName)} */}
+                    {i18n.t(klassName) !== '[missing "th." translation]' ? i18n.t(klassName) : null}
                 </Text>
             </View>
         </View>

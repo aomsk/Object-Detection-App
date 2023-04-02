@@ -25,6 +25,9 @@ import { globalStyles } from '../../styles/global';
 // Expo Localization
 import { getLocales } from 'expo-localization';
 
+// I18n
+import { i18n } from "../../language/i18n";
+
 export default function ObstructionDetectScreen() {
     const modelJson = require('../../assets/model/obstruction_web_model/model.json')
     const modelWeights = [
@@ -89,6 +92,12 @@ export default function ObstructionDetectScreen() {
 const deviceLanguage = getLocales()[0].languageCode;
 console.log('deviceLanguage: ', deviceLanguage);
 
+// Set the locale once at the beginning of your app.
+i18n.locale = deviceLanguage
+
+// When a value is missing from a language it'll fall back to another language with the key present.
+i18n.enableFallback = true
+
 const TensorCamera = cameraWithTensors(Camera)
 let textureDims =
     Platform.OS == 'ios'
@@ -126,30 +135,29 @@ const CameraView = ({ model, inputTensorSize }) => {
                         console.log('Class: ', [klass, score])
                         setKlassName(klass)
 
-                        // Platfrom IOS
-                        if (Platform.OS === 'ios' && deviceLanguage === 'th') {
-                            if (klass == 'BillBoard') {
+                        if (deviceLanguage === 'th') {
+                            if (klass == 'billBoard') {
                                 Speech.speak('ป้ายโฆษณา',
                                     {
                                         language: 'th',
                                     }
                                 );
                             }
-                            if (klass == 'Electric') {
+                            if (klass == 'electric') {
                                 Speech.speak('เสาไฟฟ้า',
                                     {
                                         language: 'th',
                                     }
                                 );
                             }
-                            if (klass == 'Sofa') {
+                            if (klass == 'sofa') {
                                 Speech.speak('โซฟา',
                                     {
                                         language: 'th',
                                     }
                                 );
                             }
-                            if (klass == 'Table') {
+                            if (klass == 'table') {
                                 Speech.speak('โต๊ะ',
                                     {
                                         language: 'th',
@@ -157,46 +165,7 @@ const CameraView = ({ model, inputTensorSize }) => {
                                 );
                             }
                         }
-                        else if (Platform.OS === 'ios' && deviceLanguage !== 'th') {
-                            Speech.speak(klass,
-                                {
-                                    language: 'en',
-                                }
-                            );
-                        }
-
-                        // Platfrom Android
-                        else if (Platform.OS === 'android' && deviceLanguage === 'th') {
-                            if (klass == 'BillBoard') {
-                                Speech.speak('ป้ายโฆษณา',
-                                    {
-                                        language: 'th',
-                                    }
-                                );
-                            }
-                            if (klass == 'Electric') {
-                                Speech.speak('เสาไฟฟ้า',
-                                    {
-                                        language: 'th',
-                                    }
-                                );
-                            }
-                            if (klass == 'Sofa') {
-                                Speech.speak('โซฟา',
-                                    {
-                                        language: 'th',
-                                    }
-                                );
-                            }
-                            if (klass == 'Table') {
-                                Speech.speak('โต๊ะ',
-                                    {
-                                        language: 'th',
-                                    }
-                                );
-                            }
-                        }
-                        else if (Platform.OS === 'android' && deviceLanguage !== 'th') {
+                        else {
                             Speech.speak(klass,
                                 {
                                     language: 'en',
@@ -235,10 +204,12 @@ const CameraView = ({ model, inputTensorSize }) => {
             </View>
             <View style={globalStyles.predictionContainer}>
                 <Text style={{ fontSize: 30, color: 'red', fontWeight: 'bold' }}>
-                    ClassName : {klassName}
+                    {/* ClassName : {klassName} */}
+                    {/* {i18n.t(klassName)} */}
+                    {i18n.t(klassName) !== '[missing "th." translation]' ? i18n.t(klassName) : null}
                 </Text>
             </View>
-        </View>
+        </View >
     )
 }
 
