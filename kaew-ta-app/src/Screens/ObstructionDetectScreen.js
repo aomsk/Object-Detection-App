@@ -1,26 +1,29 @@
-import { StyleSheet, Text, View, useWindowDimensions, NativeModules } from 'react-native'
+import { Text, View, useWindowDimensions } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar'
 
-//Load Model
+// Load Model
 import { loadModel } from '../LoadModel/TensorLoadModel'
 
-//TensorFlow
+// TensorFlow
 import * as tf from '@tensorflow/tfjs'
 import '@tensorflow/tfjs-react-native'
 
-//Camera
+// Camera
 import { Camera } from 'expo-camera'
 import { cameraWithTensors } from '@tensorflow/tfjs-react-native'
 
-//Lables
+// Lables
 import labels_Obstruction from '../utils/labels_Obstruction.json'
 
-//Speech
+// Expo Speech
 import * as Speech from 'expo-speech'
 
-//Global Styles
+// Global Styles
 import { globalStyles } from '../../styles/global';
+
+// Expo Localization
+import { getLocales } from 'expo-localization';
 
 export default function ObstructionDetectScreen() {
     const modelJson = require('../../assets/model/obstruction_web_model/model.json')
@@ -82,15 +85,9 @@ export default function ObstructionDetectScreen() {
     )
 }
 
-// Check local language of mobile
-// iOS:
-const locale_lang_ios = NativeModules.SettingsManager.settings.AppleLocale ||
-    NativeModules.SettingsManager.settings.AppleLanguages[0]
-console.log('locale_lang_ios: ', locale_lang_ios);
-
-// Android:
-const locale_lang_android = NativeModules.I18nManager.localeIdentifier
-console.log('locale_lang_android: ', locale_lang_android);
+// Check local language in device
+const deviceLanguage = getLocales()[0].languageCode;
+console.log('deviceLanguage: ', deviceLanguage);
 
 const TensorCamera = cameraWithTensors(Camera)
 let textureDims =
@@ -130,44 +127,37 @@ const CameraView = ({ model, inputTensorSize }) => {
                         setKlassName(klass)
 
                         // Platfrom IOS
-                        if (Platform.OS === 'ios' && locale_lang_ios.slice(0, 2) === 'th') {
-                            if (klass == 'Twenty Baht') {
-                                Speech.speak('ธนบัตรยี่สิบบาท',
+                        if (Platform.OS === 'ios' && deviceLanguage === 'th') {
+                            if (klass == 'BillBoard') {
+                                Speech.speak('ป้ายโฆษณา',
                                     {
                                         language: 'th',
                                     }
                                 );
                             }
-                            if (klass == 'Fifty Baht') {
-                                Speech.speak('ธนบัตรห้าสิบบาท',
+                            if (klass == 'Electric') {
+                                Speech.speak('เสาไฟฟ้า',
                                     {
                                         language: 'th',
                                     }
                                 );
                             }
-                            if (klass == 'One Hundred Baht') {
-                                Speech.speak('ธนบัตรหนึ่งร้อยบาท',
+                            if (klass == 'Sofa') {
+                                Speech.speak('โซฟา',
                                     {
                                         language: 'th',
                                     }
                                 );
                             }
-                            if (klass == 'Five Hundred Baht') {
-                                Speech.speak('ธนบัตรห้าร้อยบาท',
-                                    {
-                                        language: 'th',
-                                    }
-                                );
-                            }
-                            if (klass == 'One Thousand Baht') {
-                                Speech.speak('ธนบัตรหนึ่งพันบาท',
+                            if (klass == 'Table') {
+                                Speech.speak('โต๊ะ',
                                     {
                                         language: 'th',
                                     }
                                 );
                             }
                         }
-                        else if (Platform.OS === 'ios' && locale_lang_ios.slice(0, 2) !== 'th') {
+                        else if (Platform.OS === 'ios' && deviceLanguage !== 'th') {
                             Speech.speak(klass,
                                 {
                                     language: 'en',
@@ -176,44 +166,37 @@ const CameraView = ({ model, inputTensorSize }) => {
                         }
 
                         // Platfrom Android
-                        else if (Platform.OS === 'android' && locale_lang_android.slice(0, 2) === 'th') {
-                            if (klass == 'Twenty Baht') {
-                                Speech.speak('ธนบัตรยี่สิบบาท',
+                        else if (Platform.OS === 'android' && deviceLanguage === 'th') {
+                            if (klass == 'BillBoard') {
+                                Speech.speak('ป้ายโฆษณา',
                                     {
                                         language: 'th',
                                     }
                                 );
                             }
-                            if (klass == 'Fifty Baht') {
-                                Speech.speak('ธนบัตรห้าสิบบาท',
+                            if (klass == 'Electric') {
+                                Speech.speak('เสาไฟฟ้า',
                                     {
                                         language: 'th',
                                     }
                                 );
                             }
-                            if (klass == 'One Hundred Baht') {
-                                Speech.speak('ธนบัตรหนึ่งร้อยบาท',
+                            if (klass == 'Sofa') {
+                                Speech.speak('โซฟา',
                                     {
                                         language: 'th',
                                     }
                                 );
                             }
-                            if (klass == 'Five Hundred Baht') {
-                                Speech.speak('ธนบัตรห้าร้อยบาท',
-                                    {
-                                        language: 'th',
-                                    }
-                                );
-                            }
-                            if (klass == 'One Thousand Baht') {
-                                Speech.speak('ธนบัตรหนึ่งพันบาท',
+                            if (klass == 'Table') {
+                                Speech.speak('โต๊ะ',
                                     {
                                         language: 'th',
                                     }
                                 );
                             }
                         }
-                        else if (Platform.OS === 'android' && locale_lang_android.slice(0, 2) !== 'th') {
+                        else if (Platform.OS === 'android' && deviceLanguage !== 'th') {
                             Speech.speak(klass,
                                 {
                                     language: 'en',
