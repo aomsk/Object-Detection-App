@@ -19,6 +19,9 @@ import labels_Money from '../utils/labels_Money.json'
 //Speech
 import * as Speech from 'expo-speech'
 
+//Global Styles
+import { globalStyles } from '../../styles/global';
+
 export default function MoneyDetectScreen() {
 
     const modelJson = require('../../assets/model/money_web_model/model.json')
@@ -60,7 +63,7 @@ export default function MoneyDetectScreen() {
     }, [])
 
     return (
-        <View style={styles.container}>
+        <View style={globalStyles.container}>
             <View>
                 {model ? (
                     <View style={{ flex: 1, alignItems: 'center' }}>
@@ -127,98 +130,97 @@ const CameraView = ({ model, inputTensorSize }) => {
                         console.log('Class: ', [klass, score])
                         setKlassName(klass)
 
-                        if (Platform.OS === 'ios') {
-                            if (locale_lang_ios.slice(0, 2) === 'th') {
-                                if (klass == 'Twenty Baht') {
-                                    Speech.speak('ธนบัตรยี่สิบบาท',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
-                                }
-                                if (klass == 'Fifty Baht') {
-                                    Speech.speak('ธนบัตรห้าสิบบาท',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
-                                }
-                                if (klass == 'One Hundred Baht') {
-                                    Speech.speak('ธนบัตรหนึ่งร้อยบาท',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
-                                }
-                                if (klass == 'Five Hundred Baht') {
-                                    Speech.speak('ธนบัตรห้าร้อยบาท',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
-                                }
-                                if (klass == 'One Thousand Baht') {
-                                    Speech.speak('ธนบัตรหนึ่งพันบาท',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
-                                }
-                            }
-                            else {
-                                Speech.speak(klass,
+                        // Platfrom IOS
+                        if (Platform.OS === 'ios' && locale_lang_ios.slice(0, 2) === 'th') {
+                            if (klass == 'Twenty Baht') {
+                                Speech.speak('ธนบัตรยี่สิบบาท',
                                     {
-                                        language: 'en',
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'Fifty Baht') {
+                                Speech.speak('ธนบัตรห้าสิบบาท',
+                                    {
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'One Hundred Baht') {
+                                Speech.speak('ธนบัตรหนึ่งร้อยบาท',
+                                    {
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'Five Hundred Baht') {
+                                Speech.speak('ธนบัตรห้าร้อยบาท',
+                                    {
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'One Thousand Baht') {
+                                Speech.speak('ธนบัตรหนึ่งพันบาท',
+                                    {
+                                        language: 'th',
                                     }
                                 );
                             }
                         }
-                        if (Platform.OS === 'android') {
-                            if (locale_lang_android.slice(0, 2) === 'th') {
-                                if (klass == 'Twenty Baht') {
-                                    Speech.speak('ธนบัตรยี่สิบบาท',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
+                        else if (Platform.OS === 'ios' && locale_lang_ios.slice(0, 2) !== 'th') {
+                            Speech.speak(klass,
+                                {
+                                    language: 'en',
                                 }
-                                if (klass == 'Fifty Baht') {
-                                    Speech.speak('ธนบัตรห้าสิบบาท',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
-                                }
-                                if (klass == 'One Hundred Baht') {
-                                    Speech.speak('ธนบัตรหนึ่งร้อยบาท',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
-                                }
-                                if (klass == 'Five Hundred Baht') {
-                                    Speech.speak('ธนบัตรห้าร้อยบาท',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
-                                }
-                                if (klass == 'One Thousand Baht') {
-                                    Speech.speak('ธนบัตรหนึ่งพันบาท',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
-                                }
-                            }
-                            else {
-                                Speech.speak(klass,
+                            );
+                        }
+
+                        // Platfrom Android
+                        else if (Platform.OS === 'android' && locale_lang_android.slice(0, 2) === 'th') {
+                            if (klass == 'Twenty Baht') {
+                                Speech.speak('ธนบัตรยี่สิบบาท',
                                     {
-                                        language: 'en',
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'Fifty Baht') {
+                                Speech.speak('ธนบัตรห้าสิบบาท',
+                                    {
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'One Hundred Baht') {
+                                Speech.speak('ธนบัตรหนึ่งร้อยบาท',
+                                    {
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'Five Hundred Baht') {
+                                Speech.speak('ธนบัตรห้าร้อยบาท',
+                                    {
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'One Thousand Baht') {
+                                Speech.speak('ธนบัตรหนึ่งพันบาท',
+                                    {
+                                        language: 'th',
                                     }
                                 );
                             }
                         }
+                        else if (Platform.OS === 'android' && locale_lang_android.slice(0, 2) !== 'th') {
+                            Speech.speak(klass,
+                                {
+                                    language: 'en',
+                                }
+                            );
+                        } // End if
                     }
                 }
 
@@ -249,8 +251,8 @@ const CameraView = ({ model, inputTensorSize }) => {
                     autorender={true}
                 />
             </View>
-            <View style={styles.predictionContainer}>
-                <Text style={{ fontSize: 20, color: 'red', fontWeight: 'bold' }}>
+            <View style={globalStyles.predictionContainer}>
+                <Text style={{ fontSize: 30, color: 'red', fontWeight: 'bold' }}>
                     ClassName : {klassName}
                 </Text>
             </View>
@@ -258,17 +260,17 @@ const CameraView = ({ model, inputTensorSize }) => {
     )
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#fff',
-    },
-    predictionContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#494949',
-    },
-})
+// const styles = StyleSheet.create({
+//     container: {
+//         flex: 1,
+//         justifyContent: 'center',
+//         alignItems: 'center',
+//         backgroundColor: '#fff',
+//     },
+//     predictionContainer: {
+//         flex: 1,
+//         justifyContent: 'center',
+//         alignItems: 'center',
+//         backgroundColor: '#494949',
+//     },
+// })

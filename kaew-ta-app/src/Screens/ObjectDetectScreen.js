@@ -19,7 +19,10 @@ import labels_Object from '../utils/labels_Object.json'
 //Speech
 import * as Speech from 'expo-speech'
 
-const ObjectDetectScreen = () => {
+//Global Styles
+import { globalStyles } from '../../styles/global';
+
+export default function ObjectDetectScreen() {
     const modelJson = require("../../assets/model/general_object_web_model/model.json");
     const modelWeights = [
         require("../../assets/model/general_object_web_model/group1-shard1of7.bin"),
@@ -76,7 +79,7 @@ const ObjectDetectScreen = () => {
     }, []);
 
     return (
-        <View style={styles.container}>
+        <View style={globalStyles.container}>
             <>
                 {model ? (
                     <View style={{ flex: 1, alignItems: 'center' }}>
@@ -148,71 +151,97 @@ const CameraView = ({ model, inputTensorSize }) => {
                         console.log('Class: ', [klass, score])
                         setKlassName(klass)
 
-                        if (Platform.OS === 'ios') {
-                            if (locale_lang_ios.slice(0, 2) === 'th') {
-                                'th'
-                                if (klass == 'Cup') {
-                                    Speech.speak('แก้ว',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
-                                }
-                                if (klass == 'Plate') {
-                                    Speech.speak('จาน',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
-                                }
-                                if (klass == 'Spoon') {
-                                    Speech.speak('ซ้อม',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
-                                }
-                            }
-                            else {
-                                Speech.speak(klass,
+                        // Platfrom IOS
+                        if (Platform.OS === 'ios' && locale_lang_ios.slice(0, 2) === 'th') {
+                            if (klass == 'Twenty Baht') {
+                                Speech.speak('ธนบัตรยี่สิบบาท',
                                     {
-                                        language: 'en',
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'Fifty Baht') {
+                                Speech.speak('ธนบัตรห้าสิบบาท',
+                                    {
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'One Hundred Baht') {
+                                Speech.speak('ธนบัตรหนึ่งร้อยบาท',
+                                    {
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'Five Hundred Baht') {
+                                Speech.speak('ธนบัตรห้าร้อยบาท',
+                                    {
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'One Thousand Baht') {
+                                Speech.speak('ธนบัตรหนึ่งพันบาท',
+                                    {
+                                        language: 'th',
                                     }
                                 );
                             }
                         }
-                        if (Platform.OS === 'android') {
-                            if (locale_lang_android.slice(0, 2) === 'th') {
-                                if (klass == 'Cup') {
-                                    Speech.speak('แก้ว',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
+                        else if (Platform.OS === 'ios' && locale_lang_ios.slice(0, 2) !== 'th') {
+                            Speech.speak(klass,
+                                {
+                                    language: 'en',
                                 }
-                                if (klass == 'Plate') {
-                                    Speech.speak('จาน',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
-                                }
-                                if (klass == 'Spoon') {
-                                    Speech.speak('ซ้อม',
-                                        {
-                                            language: 'th',
-                                        }
-                                    );
-                                }
-                            }
-                            else {
-                                Speech.speak(klass,
+                            );
+                        }
+
+                        // Platfrom Android
+                        else if (Platform.OS === 'android' && locale_lang_android.slice(0, 2) === 'th') {
+                            if (klass == 'Twenty Baht') {
+                                Speech.speak('ธนบัตรยี่สิบบาท',
                                     {
-                                        language: 'en',
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'Fifty Baht') {
+                                Speech.speak('ธนบัตรห้าสิบบาท',
+                                    {
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'One Hundred Baht') {
+                                Speech.speak('ธนบัตรหนึ่งร้อยบาท',
+                                    {
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'Five Hundred Baht') {
+                                Speech.speak('ธนบัตรห้าร้อยบาท',
+                                    {
+                                        language: 'th',
+                                    }
+                                );
+                            }
+                            if (klass == 'One Thousand Baht') {
+                                Speech.speak('ธนบัตรหนึ่งพันบาท',
+                                    {
+                                        language: 'th',
                                     }
                                 );
                             }
                         }
+                        else if (Platform.OS === 'android' && locale_lang_android.slice(0, 2) !== 'th') {
+                            Speech.speak(klass,
+                                {
+                                    language: 'en',
+                                }
+                            );
+                        } // End if
                     }
                 }
 
@@ -227,7 +256,7 @@ const CameraView = ({ model, inputTensorSize }) => {
     }
 
     return (
-        <View style={styles.container}>
+        <View style={{ flex: 2 }}>
             <View style={{ flex: 2 }}>
                 <TensorCamera
                     // Standard Camera props
@@ -244,10 +273,8 @@ const CameraView = ({ model, inputTensorSize }) => {
                     autorender={true}
                 />
             </View>
-            <View style={styles.predictionContainer}>
-                <Text
-                    style={{ fontSize: 35, color: 'red', fontWeight: 'bold' }}
-                >
+            <View style={globalStyles.predictionContainer}>
+                <Text style={{ fontSize: 30, color: 'red', fontWeight: 'bold' }}>
                     ClassName : {klassName}
                 </Text>
             </View>
@@ -255,19 +282,17 @@ const CameraView = ({ model, inputTensorSize }) => {
     )
 }
 
-export default ObjectDetectScreen
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        backgroundColor: 'black',
-    },
-    predictionContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#494949',
-    },
-})
+// const styles = StyleSheet.create({
+//     container: {
+//         flex: 1,
+//         justifyContent: 'center',
+//         alignItems: 'center',
+//         backgroundColor: '#fff',
+//     },
+//     predictionContainer: {
+//         flex: 1,
+//         justifyContent: 'center',
+//         alignItems: 'center',
+//         backgroundColor: '#494949',
+//     },
+// })
