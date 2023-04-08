@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
 import React from "react";
 
 // Expo Localization
@@ -8,9 +8,18 @@ import { getLocales } from 'expo-localization';
 import { useSelector, useDispatch } from "react-redux";
 import { checkDeviceLanguage } from "../../store/actions/DeviceLanguageAction";
 
+// I18n
+import { i18n } from "../../language/i18n";
+
 export default function HomeScreen({ navigation }) {
 
   const deviceLanguage = getLocales()[0].languageCode;
+
+  // Set the locale once at the beginning of your app.
+  i18n.locale = deviceLanguage;
+
+  // When a value is missing from a language it'll fall back to another language with the key present.
+  i18n.enableFallback = true
 
   const dispacth = useDispatch();
   dispacth(checkDeviceLanguage(deviceLanguage));
@@ -29,37 +38,37 @@ export default function HomeScreen({ navigation }) {
           style={styles.button}
           onPress={() => navigation.navigate("Obstruction")}
           accessible={true} // optional, this is the default
-          accessibilityLabel={"Obstruction Detection button"} // overrides child content
-          accessibilityTraits={"Obstruction Detection button"} // only works in ios
-          accessibilityComponentType={"Obstruction Detection button"} // only works in android
-          accessibilityHint={"Tap twice to activate"}
-          accessibilityState={{ selected: true }}
+          // accessibilityLabel={"Obstruction Detection button"} // overrides child content
+          // accessibilityTraits={"Obstruction Detection button"} // only works in ios
+          // accessibilityComponentType={"Obstruction Detection button"} // only works in android
+          accessibilityHint={i18n.t("taptwicetoactivate")}
+        // accessibilityState={{ selected: true }}
         >
-          <Text style={styles.textButton}>Obstruction</Text>
+          <Text style={styles.textButton}>{i18n.t("obstruction")}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("Object")}
           accessible={true} // optional, this is the default
-          accessibilityLabel={"Object Detection button"} // overrides child content
-          accessibilityTraits={"Object Detection button"} // only works in ios
-          accessibilityComponentType={"Object Detection button"} // only works in android
-          accessibilityHint={"Tap twice to activate"}
-          accessibilityState={{ selected: true }}
+          // accessibilityLabel={"Object Detection button"} // overrides child content
+          // accessibilityTraits={"Object Detection button"} // only works in ios
+          // accessibilityComponentType={"Object Detection button"} // only works in android
+          accessibilityHint={i18n.t("taptwicetoactivate")}
+        // accessibilityState={{ selected: true }}
         >
-          <Text style={styles.textButton}>Object</Text>
+          <Text style={styles.textButton}>{i18n.t("object")}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("Money")}
           accessible={true} // optional, this is the default
-          accessibilityLabel={"Money Detection button"} // overrides child content
-          accessibilityTraits={"Money Detection button"} // only works in ios
-          accessibilityComponentType={"Money Detection button"} // only works in android
-          accessibilityHint={"Tap twice to activate"}
-          accessibilityState={{ selected: true }}
+          // accessibilityLabel={"Money Detection button"} // overrides child content
+          // accessibilityTraits={"Money Detection button"} // only works in ios
+          // accessibilityComponentType={"Money Detection button"} // only works in android
+          accessibilityHint={i18n.t("taptwicetoactivate")}
+        // accessibilityState={{ selected: true }}
         >
-          <Text style={styles.textButton}>Money & Coin</Text>
+          <Text style={styles.textButton}>{i18n.t("money")}</Text>
         </TouchableOpacity>
       </View>
     </View>
