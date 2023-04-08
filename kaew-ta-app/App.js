@@ -7,37 +7,50 @@ import { LoadingView } from './src/utils/LoadingView';
 //import Navigation
 import StackNavigation from './src/Navigation/StackNavigation';
 
+// Store State with Redux
+import { Provider } from 'react-redux';
+import { createStore, combineReducers } from 'redux';
+import DeviceLanguageReducer from './store/reducers/DeviceLanguageReducer';
+
+const rootReducer = combineReducers({
+  deviceLangRoot: DeviceLanguageReducer
+});
+
+const store = createStore(rootReducer);
+
 export default function App() {
 
-    const [permission, requestPermission] = Camera.useCameraPermissions();
+  const [permission, requestPermission] = Camera.useCameraPermissions();
 
-    if (!permission?.granted) {
-        return (
-            <View style={styles.container}>
-                <StatusBar style="auto" />
-                <LoadingView message="Camera permission is required to continue">
-                    <Button
-                        title="Grant permission"
-                        onPress={requestPermission}
-                    ></Button>
-                </LoadingView>
-            </View>
-        );
-    }
-
-    console.log('permission: ', permission);
-
+  if (!permission?.granted) {
     return (
-        <StackNavigation />
+      <View style={styles.container}>
+        <StatusBar style="auto" />
+        <LoadingView message="Camera permission is required to continue">
+          <Button
+            title="Grant permission"
+            onPress={requestPermission}
+          ></Button>
+        </LoadingView>
+      </View>
     );
+  }
+
+  console.log('permission: ', permission);
+
+  return (
+    <Provider store={store}>
+      <StackNavigation />
+    </Provider>
+  );
 
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
