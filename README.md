@@ -10,7 +10,7 @@ This project is a part of PROJECT IN SOFTWARE ENGINEERING 1&2 1/2023 and 2/2023
 [![diagrams.net](https://img.shields.io/static/v1?label=&message=diagrams.net&color=%2320232A&style=for-the-badge&logo=diagrams.net)](https://app.diagrams.net/#G1Bg4rdSzIdEJlZb7M2nmWu-_ESmLxu0qG)
 
 # TODO :blush:
-* Detects 3 types of obstacles
+* Detect 3 types of obstacles
 * Detect 3 types of Objects
 * Detect 5 types of Money
 
