@@ -23,210 +23,214 @@ import * as Speech from 'expo-speech'
 import { globalStyles } from '../../styles/global';
 
 // Expo Localization
-import { getLocales } from 'expo-localization';
+// import { getLocales } from 'expo-localization';
 
 // I18n
 import { i18n } from "../../language/i18n";
 
+// useSelector
+import { useSelector } from "react-redux";
+
 export default function ObjectDetectScreen() {
-    const modelJson = require("../../assets/model/general_object_web_model/model.json");
-    const modelWeights = [
-        require("../../assets/model/general_object_web_model/group1-shard1of7.bin"),
-        require("../../assets/model/general_object_web_model/group1-shard2of7.bin"),
-        require("../../assets/model/general_object_web_model/group1-shard3of7.bin"),
-        require("../../assets/model/general_object_web_model/group1-shard4of7.bin"),
-        require("../../assets/model/general_object_web_model/group1-shard5of7.bin"),
-        require("../../assets/model/general_object_web_model/group1-shard6of7.bin"),
-        require("../../assets/model/general_object_web_model/group1-shard7of7.bin"),
-    ];
+  const modelJson = require("../../assets/model/general_object_web_model/model.json");
+  const modelWeights = [
+    require("../../assets/model/general_object_web_model/group1-shard1of7.bin"),
+    require("../../assets/model/general_object_web_model/group1-shard2of7.bin"),
+    require("../../assets/model/general_object_web_model/group1-shard3of7.bin"),
+    require("../../assets/model/general_object_web_model/group1-shard4of7.bin"),
+    require("../../assets/model/general_object_web_model/group1-shard5of7.bin"),
+    require("../../assets/model/general_object_web_model/group1-shard6of7.bin"),
+    require("../../assets/model/general_object_web_model/group1-shard7of7.bin"),
+  ];
 
-    // const [hasPermission, setHasPermission] = useState(null);
-    // const [type, setType] = useState("back");
-    const [model, setModel] = useState(null);
-    const [inputTensor, setInputTensor] = useState([]);
-    // const [ctx, setCTX] = useState(null);
+  // const [hasPermission, setHasPermission] = useState(null);
+  // const [type, setType] = useState("back");
+  const [model, setModel] = useState(null);
+  const [inputTensor, setInputTensor] = useState([]);
+  // const [ctx, setCTX] = useState(null);
 
-    // model configuration
-    const configurations = { threshold: 0.25 };
+  // model configuration
+  const configurations = { threshold: 0.25 };
 
-    useEffect(() => {
-        // (async () => {
-        //     tf.ready().then(() => {
-        //         loadModel(modelJson, modelWeights).then(async (loadedModel) => {
-        //             // warming up model
-        //             const dummyInput = tf.ones(loadedModel.inputs[0].shape);
-        //             console.log('dummyInput: ', dummyInput);
-        //             await loadedModel.executeAsync(dummyInput);
-        //             tf.dispose(dummyInput);
+  useEffect(() => {
+    // (async () => {
+    //     tf.ready().then(() => {
+    //         loadModel(modelJson, modelWeights).then(async (loadedModel) => {
+    //             // warming up model
+    //             const dummyInput = tf.ones(loadedModel.inputs[0].shape);
+    //             console.log('dummyInput: ', dummyInput);
+    //             await loadedModel.executeAsync(dummyInput);
+    //             tf.dispose(dummyInput);
 
-        //             // set state
-        //             setInputTensor(loadedModel.inputs[0].shape);
-        //             setModel(loadedModel);
-        //         });
-        //     });
-        // })();
+    //             // set state
+    //             setInputTensor(loadedModel.inputs[0].shape);
+    //             setModel(loadedModel);
+    //         });
+    //     });
+    // })();
 
-        async function setUpModel() {
-            tf.ready().then(() => {
-                loadModel(modelJson, modelWeights).then(async (loadedModel) => {
-                    // warming up model
-                    const dummyInput = tf.ones(loadedModel.inputs[0].shape);
-                    console.log('dummyInput: ', dummyInput);
-                    await loadedModel.executeAsync(dummyInput);
-                    tf.dispose(dummyInput);
+    async function setUpModel() {
+      tf.ready().then(() => {
+        loadModel(modelJson, modelWeights).then(async (loadedModel) => {
+          // warming up model
+          const dummyInput = tf.ones(loadedModel.inputs[0].shape);
+          console.log('dummyInput: ', dummyInput);
+          await loadedModel.executeAsync(dummyInput);
+          tf.dispose(dummyInput);
 
-                    // set state
-                    setInputTensor(loadedModel.inputs[0].shape);
-                    setModel(loadedModel);
-                });
-            });
-        }
-        setUpModel()
-    }, []);
+          // set state
+          setInputTensor(loadedModel.inputs[0].shape);
+          setModel(loadedModel);
+        });
+      });
+    }
+    setUpModel()
+  }, []);
 
-    return (
-        <View style={globalStyles.container}>
-            <>
-                {model ? (
-                    <View style={{ flex: 1, alignItems: 'center' }}>
-                        <View style={{ alignItems: 'center' }}>
-                            <CameraView
-                                model={model}
-                                inputTensorSize={inputTensor}
-                            // config={configurations}
-                            />
-                        </View>
-                    </View>
-                ) : (
-                    <Text>Loading Object Model...</Text>
-                )}
-            </>
-            <StatusBar style="auto" />
-        </View>
-    );
+  return (
+    <View style={globalStyles.container}>
+      <>
+        {model ? (
+          <View style={{ flex: 1, alignItems: 'center' }}>
+            <View style={{ alignItems: 'center' }}>
+              <CameraView
+                model={model}
+                inputTensorSize={inputTensor}
+              // config={configurations}
+              />
+            </View>
+          </View>
+        ) : (
+          <Text>Loading Object Model...</Text>
+        )}
+      </>
+      <StatusBar style="auto" />
+    </View>
+  );
 };
-
-// Check local language in device
-const deviceLanguage = getLocales()[0].languageCode;
-console.log('deviceLanguage: ', deviceLanguage);
-
-// Set the locale once at the beginning of your app.
-i18n.locale = deviceLanguage
-
-// When a value is missing from a language it'll fall back to another language with the key present.
-i18n.enableFallback = true
 
 const TensorCamera = cameraWithTensors(Camera)
 let textureDims =
-    Platform.OS == 'ios'
-        ? { height: 2000, width: 1000 }
-        : { height: 1200, width: 1600 }
+  Platform.OS == 'ios'
+    ? { height: 2000, width: 1000 }
+    : { height: 1200, width: 1600 }
 
 const CameraView = ({ model, inputTensorSize }) => {
-    const threshold = 0.25
 
-    const size = useWindowDimensions();
-    // console.log('size: ', size);
+  // Check local language in device
+  const deviceLanguage = useSelector((state) => state.deviceLangRoot.device_lang)
 
-    const [klassName, setKlassName] = useState('')
+  // Set the locale once at the beginning of your app.
+  i18n.locale = deviceLanguage;
 
-    const cameraStream = (images) => {
-        const detectFrame = async () => {
-            tf.engine().startScope()
-            const input = tf.tidy(() => {
-                return tf.image
-                    .resizeBilinear(images.next().value, [
-                        inputTensorSize[1],
-                        inputTensorSize[2],
-                    ])
-                    .div(255.0)
-                    .expandDims(0)
-            })
+  // When a value is missing from a language it'll fall back to another language with the key present.
+  i18n.enableFallback = true
 
-            await model.executeAsync(input).then((res) => {
-                const [boxes, scores, classes] = res.slice(0, 3)
-                const boxes_data = boxes.dataSync()
-                const scores_data = scores.dataSync()
-                const classes_data = classes.dataSync()
+  const threshold = 0.25
 
-                for (let i = 0; i < scores_data.length; ++i) {
-                    if (scores_data[i] > threshold) {
-                        const klass = labels_Object[classes_data[i]]
-                        const score = (scores_data[i] * 100).toFixed(1)
+  const size = useWindowDimensions();
+  // console.log('size: ', size);
 
-                        console.log('Class: ', [klass, score])
-                        setKlassName(klass)
+  const [klassName, setKlassName] = useState('')
 
-                        if (deviceLanguage === 'th') {
-                            if (klass == 'cup') {
-                                Speech.speak('แก้ว',
-                                    {
-                                        language: 'th',
-                                    }
-                                );
-                            }
-                            if (klass == 'plate') {
-                                Speech.speak('จาน',
-                                    {
-                                        language: 'th',
-                                    }
-                                );
-                            }
-                            if (klass == 'spoon') {
-                                Speech.speak('ช้อน',
-                                    {
-                                        language: 'th',
-                                    }
-                                );
-                            }
-                        }
-                        else {
-                            Speech.speak(klass,
-                                {
-                                    language: 'en',
-                                }
-                            );
-                        } // End if
-                    }
+  const cameraStream = (images) => {
+    const detectFrame = async () => {
+      tf.engine().startScope()
+      const input = tf.tidy(() => {
+        return tf.image
+          .resizeBilinear(images.next().value, [
+            inputTensorSize[1],
+            inputTensorSize[2],
+          ])
+          .div(255.0)
+          .expandDims(0)
+      })
+
+      await model.executeAsync(input).then((res) => {
+        const [boxes, scores, classes] = res.slice(0, 3)
+        const boxes_data = boxes.dataSync()
+        const scores_data = scores.dataSync()
+        const classes_data = classes.dataSync()
+
+        for (let i = 0; i < scores_data.length; ++i) {
+          if (scores_data[i] > threshold) {
+            const klass = labels_Object[classes_data[i]]
+            const score = (scores_data[i] * 100).toFixed(1)
+
+            console.log('Class: ', [klass, score])
+            setKlassName(klass)
+
+            if (deviceLanguage === 'th') {
+              if (klass == 'cup') {
+                Speech.speak('แก้ว',
+                  {
+                    language: 'th',
+                  }
+                );
+              }
+              if (klass == 'plate') {
+                Speech.speak('จาน',
+                  {
+                    language: 'th',
+                  }
+                );
+              }
+              if (klass == 'spoon') {
+                Speech.speak('ช้อน',
+                  {
+                    language: 'th',
+                  }
+                );
+              }
+            }
+            else {
+              Speech.speak(klass,
+                {
+                  language: 'en',
                 }
-
-                tf.dispose([res, input])
-            })
-
-            requestAnimationFrame(detectFrame) // get another frame
-            tf.engine().endScope()
+              );
+            } // End if
+          }
         }
 
-        detectFrame()
+        tf.dispose([res, input])
+      })
+
+      requestAnimationFrame(detectFrame) // get another frame
+      tf.engine().endScope()
     }
 
-    return (
-        <View style={{ flex: 2 }}>
-            <View style={{ flex: 2 }}>
-                <TensorCamera
-                    // Standard Camera props
-                    width={size.width}
-                    height={size.height}
-                    style={{ zIndex: 0 }}
-                    // Tensor related props
-                    cameraTextureHeight={textureDims.height}
-                    cameraTextureWidth={textureDims.width}
-                    resizeHeight={inputTensorSize[1]}
-                    resizeWidth={inputTensorSize[2]}
-                    resizeDepth={inputTensorSize[3]}
-                    onReady={cameraStream}
-                    autorender={true}
-                />
-            </View>
-            <View style={globalStyles.predictionContainer}>
-                <Text style={{ fontSize: 30, color: 'red', fontWeight: 'bold' }}>
-                    {/* ClassName : {klassName} */}
-                    {/* {i18n.t(klassName)} */}
-                    {i18n.t(klassName) !== '[missing "th." translation]' ? i18n.t(klassName) : null}
-                </Text>
-            </View>
-        </View>
-    )
+    detectFrame()
+  }
+
+  return (
+    <View style={{ flex: 2 }}>
+      <View style={{ flex: 2 }}>
+        <TensorCamera
+          // Standard Camera props
+          width={size.width}
+          height={size.height}
+          style={{ zIndex: 0 }}
+          // Tensor related props
+          cameraTextureHeight={textureDims.height}
+          cameraTextureWidth={textureDims.width}
+          resizeHeight={inputTensorSize[1]}
+          resizeWidth={inputTensorSize[2]}
+          resizeDepth={inputTensorSize[3]}
+          onReady={cameraStream}
+          autorender={true}
+        />
+      </View>
+      <View style={globalStyles.predictionContainer}>
+        <Text style={{ fontSize: 30, color: 'red', fontWeight: 'bold' }}>
+          {/* ClassName : {klassName} */}
+          {/* {i18n.t(klassName)} */}
+          {/* {i18n.t(klassName) !== '[missing "th." translation]' ? i18n.t(klassName) : null} */}
+          {i18n.t(klassName) !== '[missing "th." translation]' && i18n.t(klassName) !== '[missing "en." translation]' ? i18n.t(klassName) : null}
+        </Text>
+      </View>
+    </View>
+  )
 }
 
 // const styles = StyleSheet.create({
