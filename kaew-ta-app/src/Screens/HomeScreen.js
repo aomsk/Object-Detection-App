@@ -19,13 +19,13 @@ export default function HomeScreen({ navigation }) {
   i18n.locale = deviceLanguage;
 
   // When a value is missing from a language it'll fall back to another language with the key present.
-  i18n.enableFallback = true
+  i18n.enableFallback = true;
 
   const dispacth = useDispatch();
   dispacth(checkDeviceLanguage(deviceLanguage));
 
   const deviceLanguage_store = useSelector((state) => state.deviceLangRoot.device_lang)
-  console.log('deviceLanguage_store: ', deviceLanguage_store);
+  console.log('deviceLanguage_in_store: ', deviceLanguage_store);
 
   return (
     <View style={styles.container}>
