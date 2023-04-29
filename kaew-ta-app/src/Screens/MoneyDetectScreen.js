@@ -85,7 +85,8 @@ export default function MoneyDetectScreen() {
             </View>
           </View>
         ) : (
-          <Text>Loading Money Model...</Text>
+          // <Text>Loading Money Model...</Text>
+          <Text>{i18n.t("loadingMoney")}</Text>
         )}
       </View>
       <StatusBar style="auto" />

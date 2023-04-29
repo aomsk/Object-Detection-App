@@ -83,7 +83,8 @@ export default function ObstructionDetectScreen() {
             </View>
           </View>
         ) : (
-          <Text>Loading Obstruction Model...</Text>
+          // <Text>Loading Obstruction Model...</Text>
+          <Text>{i18n.t("loadingObstruc")}</Text>
         )}
       </View>
       <StatusBar style="auto" />
