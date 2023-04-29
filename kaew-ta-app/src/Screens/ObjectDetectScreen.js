@@ -1,4 +1,4 @@
-import { Text, View, useWindowDimensions } from 'react-native'
+import { Text, View, useWindowDimensions, LogBox } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar'
 
@@ -82,10 +82,14 @@ export default function ObjectDetectScreen() {
           setInputTensor(loadedModel.inputs[0].shape);
           setModel(loadedModel);
         });
-      });
+      }).catch(function (error) {
+        console.log('setUpModel: ' + error.message);
+      });;
     }
     setUpModel()
   }, []);
+
+  // LogBox.ignoreLogs(['Possible Unhandled Promise Rejection (id: 0)']);
 
   return (
     <View style={globalStyles.container}>

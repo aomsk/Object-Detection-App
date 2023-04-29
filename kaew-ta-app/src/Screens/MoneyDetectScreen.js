@@ -1,29 +1,26 @@
-import { Text, View, useWindowDimensions } from 'react-native'
-import React, { useState, useEffect } from 'react'
+import { Text, View, useWindowDimensions } from 'react-native';
+import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar'
 
 // Load Model
-import { loadModel } from '../LoadModel/TensorLoadModel'
+import { loadModel } from '../LoadModel/TensorLoadModel';
 
 // TensorFlow
-import * as tf from '@tensorflow/tfjs'
-import '@tensorflow/tfjs-react-native'
+import * as tf from '@tensorflow/tfjs';
+import '@tensorflow/tfjs-react-native';
 
 // Camera
-import { Camera } from 'expo-camera'
-import { cameraWithTensors } from '@tensorflow/tfjs-react-native'
+import { Camera } from 'expo-camera';
+import { cameraWithTensors } from '@tensorflow/tfjs-react-native';
 
 // Lables
-import labels_Money from '../utils/labels_Money.json'
+import labels_Money from '../utils/labels_Money.json';
 
 // Speech
-import * as Speech from 'expo-speech'
+import * as Speech from 'expo-speech';
 
 // Global Styles
 import { globalStyles } from '../../styles/global';
-
-// Expo Localization
-// import { getLocales } from 'expo-localization';
 
 // I18n
 import { i18n } from "../../language/i18n";
@@ -44,11 +41,11 @@ export default function MoneyDetectScreen() {
     require('../../assets/model/money_web_model/group1-shard7of7.bin'),
   ]
 
-  const [model, setModel] = useState(null)
-  const [inputTensor, setInputTensor] = useState([])
+  const [model, setModel] = useState(null);
+  const [inputTensor, setInputTensor] = useState([]);
 
   // model configuration
-  const configurations = { threshold: 0.25 }
+  const configurations = { threshold: 0.25 };
 
   useEffect(() => {
     async function setUpModel() {
