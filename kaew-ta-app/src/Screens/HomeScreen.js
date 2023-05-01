@@ -1,39 +1,31 @@
 import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
 import React from "react";
-
-// Expo Localization
-import { getLocales } from 'expo-localization';
-
-// Redux
-import { useSelector, useDispatch } from "react-redux";
+import { getLocales } from "expo-localization"; // Expo Localization
+import { useSelector, useDispatch } from "react-redux"; // Redux
 import { checkDeviceLanguage } from "../../store/actions/DeviceLanguageAction";
-
-// I18n
-import { i18n } from "../../language/i18n";
+import { i18n } from "../../language/i18n"; // I18n
 
 export default function HomeScreen({ navigation }) {
-
   const deviceLanguage = getLocales()[0].languageCode;
 
   // Set the locale once at the beginning of your app.
   i18n.locale = deviceLanguage;
-
   // When a value is missing from a language it'll fall back to another language with the key present.
   i18n.enableFallback = true;
 
+  // Redux
   const dispacth = useDispatch();
   dispacth(checkDeviceLanguage(deviceLanguage));
-
-  const deviceLanguage_store = useSelector((state) => state.deviceLangRoot.device_lang)
-  console.log('deviceLanguage_in_store: ', deviceLanguage_store);
+  const deviceLanguage_store = useSelector(
+    (state) => state.deviceLangRoot.device_lang
+  );
+  console.log("deviceLanguage_in_store: ", deviceLanguage_store);
 
   return (
-    <View style={styles.container}>
-      <Text style={{ fontSize: 40, textAlign: "center", margin: 30 }}>
-        Main Menu
-      </Text>
+    <View className="flex-1 bg-white">
+      <Text className="text-5xl text-center m-10">Main Menu</Text>
 
-      <View style={styles.buttonContainer}>
+      <View className="flex-1 flex-col items-center">
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("Obstruction")}
