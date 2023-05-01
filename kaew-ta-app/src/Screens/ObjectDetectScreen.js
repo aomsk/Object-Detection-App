@@ -63,7 +63,7 @@ export default function ObjectDetectScreen() {
             {/* end */}
           </View>
           :
-          <Text className='text-4xl'>Loading Object Model...</Text>
+          <Text className='text-4xl'>{i18n.t("loadingObject")}</Text>
         }
       </>
       <StatusBar style="auto" />
