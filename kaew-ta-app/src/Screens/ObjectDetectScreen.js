@@ -5,9 +5,9 @@ import { loadObjectModel } from '../LoadModel/LoadObjectModel' // Load Model
 import * as tf from '@tensorflow/tfjs' // TensorFlow
 import '@tensorflow/tfjs-react-native' // TensorFlow
 import CameraObjectView from '../Camera/CameraObjectView' // Camera
-
 import { GLView } from "expo-gl";
 import Expo2DContext from "expo-2d-context";
+import { i18n } from "../../language/i18n"; // Language
 
 export default function ObjectDetectScreen() {
   const [model, setModel] = useState(null);

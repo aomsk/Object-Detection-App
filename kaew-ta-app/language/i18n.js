@@ -26,6 +26,7 @@ export const i18n = new I18n({
     headtxtObstruc: "Obstruction",
     homecameraPermis: "Camera permission is required to continue",
     btnGrantPermis: "GRANT PERMISSION",
+    mainMenu: 'Main Menu'
   },
   th: {
     billBoard: "ป้ายโฆษณา",
@@ -53,5 +54,6 @@ export const i18n = new I18n({
     headtxtObstruc: "สิ่งกีดขวาง",
     homecameraPermis: "ต้องได้รับอนุญาตจากกล้องเพื่อดำเนินการต่อ",
     btnGrantPermis: "อนุญาต",
+    mainMenu: 'เมนูหลัก'
   },
 });

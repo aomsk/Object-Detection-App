@@ -23,8 +23,7 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View className="flex-1 bg-white">
-      <Text className="text-5xl text-center m-10">Main Menu</Text>
-
+      <Text className="text-5xl text-center m-10">{i18n.t("mainMenu")}</Text>
       <View className="flex-1 flex-col items-center">
         <TouchableOpacity
           style={styles.button}

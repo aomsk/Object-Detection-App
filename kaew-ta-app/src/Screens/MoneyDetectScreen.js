@@ -5,9 +5,9 @@ import { loadMoneyModel } from '../LoadModel/LoadMoneyModel' // Load Model
 import * as tf from '@tensorflow/tfjs' // TensorFlow
 import '@tensorflow/tfjs-react-native' // TensorFlow
 import CameraMoneyView from '../Camera/CameraMoneyView' // Camera
-
 import { GLView } from "expo-gl";
 import Expo2DContext from "expo-2d-context";
+import { i18n } from "../../language/i18n"; // Language
 
 export default function MoneyDetectScreen() {
   const [model, setModel] = useState(null);

@@ -5,9 +5,9 @@ import { loadObstructionModel } from '../LoadModel/LoadObstructionModel' // Load
 import * as tf from '@tensorflow/tfjs' // TensorFlow
 import '@tensorflow/tfjs-react-native' // TensorFlow
 import CameraObstructionView from '../Camera/CameraObstructionView' // Camera
-
 import { GLView } from "expo-gl";
 import Expo2DContext from "expo-2d-context";
+import { i18n } from "../../language/i18n"; // Language
 
 export default function ObstructionDetectScreen() {
   const [model, setModel] = useState(null)
