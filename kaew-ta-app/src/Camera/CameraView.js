@@ -1,106 +1,106 @@
-import { Camera, CameraType } from 'expo-camera'
-import * as tf from '@tensorflow/tfjs'
-import { cameraWithTensors } from '@tensorflow/tfjs-react-native'
-import labels_Object from '../utils/labels_Object.json'
+// import { Camera, CameraType } from 'expo-camera'
+// import * as tf from '@tensorflow/tfjs'
+// import { cameraWithTensors } from '@tensorflow/tfjs-react-native'
+// import labels_Object from '../utils/labels_Object.json'
 
-import React, { useState } from 'react'
-import { View, Text, StyleSheet, useWindowDimensions } from 'react-native'
+// import React, { useState } from 'react'
+// import { View, Text, StyleSheet, useWindowDimensions } from 'react-native'
 
-const TensorCamera = cameraWithTensors(Camera)
-let textureDims =
-    Platform.OS == 'ios'
-        ? { height: 2000, width: 1000 }
-        : { height: 1200, width: 1600 }
+// const TensorCamera = cameraWithTensors(Camera)
+// let textureDims =
+//   Platform.OS == 'ios'
+//     ? { height: 2000, width: 1000 }
+//     : { height: 1200, width: 1600 }
 
-const CameraView = ({ model, inputTensorSize }) => {
-    const threshold = 0.25
+// const CameraView = ({ model, inputTensorSize }) => {
+//   const threshold = 0.25
 
-    const size = useWindowDimensions();
-    // console.log('size: ', size);
+//   const size = useWindowDimensions();
+//   // console.log('size: ', size);
 
-    const [klassName, setKlassName] = useState('')
+//   const [klassName, setKlassName] = useState('')
 
-    const cameraStream = (images) => {
-        const detectFrame = async () => {
-            tf.engine().startScope()
-            const input = tf.tidy(() => {
-                return tf.image
-                    .resizeBilinear(images.next().value, [
-                        inputTensorSize[1],
-                        inputTensorSize[2],
-                    ])
-                    .div(255.0)
-                    .expandDims(0)
-            })
+//   const cameraStream = (images) => {
+//     const detectFrame = async () => {
+//       tf.engine().startScope()
+//       const input = tf.tidy(() => {
+//         return tf.image
+//           .resizeBilinear(images.next().value, [
+//             inputTensorSize[1],
+//             inputTensorSize[2],
+//           ])
+//           .div(255.0)
+//           .expandDims(0)
+//       })
 
-            await model.executeAsync(input).then((res) => {
-                const [boxes, scores, classes] = res.slice(0, 3)
-                const boxes_data = boxes.dataSync()
-                const scores_data = scores.dataSync()
-                const classes_data = classes.dataSync()
+//       await model.executeAsync(input).then((res) => {
+//         const [boxes, scores, classes] = res.slice(0, 3)
+//         const boxes_data = boxes.dataSync()
+//         const scores_data = scores.dataSync()
+//         const classes_data = classes.dataSync()
 
-                for (let i = 0; i < scores_data.length; ++i) {
-                    if (scores_data[i] > threshold) {
-                        const klass = labels_Object[classes_data[i]]
-                        const score = (scores_data[i] * 100).toFixed(1)
+//         for (let i = 0; i < scores_data.length; ++i) {
+//           if (scores_data[i] > threshold) {
+//             const klass = labels_Object[classes_data[i]]
+//             const score = (scores_data[i] * 100).toFixed(1)
 
-                        console.log('Class: ', [klass, score])
-                        setKlassName(klass)
-                    }
-                }
+//             console.log('Class: ', [klass, score])
+//             setKlassName(klass)
+//           }
+//         }
 
-                tf.dispose([res, input])
-            })
+//         tf.dispose([res, input])
+//       })
 
-            requestAnimationFrame(detectFrame) // get another frame
-            tf.engine().endScope()
-        }
+//       requestAnimationFrame(detectFrame) // get another frame
+//       tf.engine().endScope()
+//     }
 
-        detectFrame()
-    }
+//     detectFrame()
+//   }
 
-    return (
-        <View style={styles.container}>
-            <View style={{ flex: 2 }}>
-                <TensorCamera
-                    // Standard Camera props
-                    width={size.width}
-                    height={size.height}
-                    style={{ zIndex: 0 }}
-                    // Tensor related props
-                    cameraTextureHeight={textureDims.height}
-                    cameraTextureWidth={textureDims.width}
-                    resizeHeight={inputTensorSize[1]}
-                    resizeWidth={inputTensorSize[2]}
-                    resizeDepth={inputTensorSize[3]}
-                    onReady={cameraStream}
-                    autorender={true}
-                />
-            </View>
-            <View style={styles.predictionContainer}>
-                <Text
-                    style={{ fontSize: 35, color: 'red', fontWeight: 'bold' }}
-                >
-                    ClassName : {klassName}
-                </Text>
-            </View>
-        </View>
-    )
-}
+//   return (
+//     <View style={styles.container}>
+//       <View style={{ flex: 2 }}>
+//         <TensorCamera
+//           // Standard Camera props
+//           width={size.width}
+//           height={size.height}
+//           style={{ zIndex: 0 }}
+//           // Tensor related props
+//           cameraTextureHeight={textureDims.height}
+//           cameraTextureWidth={textureDims.width}
+//           resizeHeight={inputTensorSize[1]}
+//           resizeWidth={inputTensorSize[2]}
+//           resizeDepth={inputTensorSize[3]}
+//           onReady={cameraStream}
+//           autorender={true}
+//         />
+//       </View>
+//       <View style={styles.predictionContainer}>
+//         <Text
+//           style={{ fontSize: 35, color: 'red', fontWeight: 'bold' }}
+//         >
+//           ClassName : {klassName}
+//         </Text>
+//       </View>
+//     </View>
+//   )
+// }
 
-export default CameraView
+// export default CameraView
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        backgroundColor: 'black',
-    },
-    predictionContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#494949',
-    },
-})
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     // justifyContent: 'center',
+//     // alignItems: 'center',
+//     backgroundColor: 'black',
+//   },
+//   predictionContainer: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     backgroundColor: '#494949',
+//   },
+// })
