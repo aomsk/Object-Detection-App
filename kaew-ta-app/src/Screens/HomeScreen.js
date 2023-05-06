@@ -28,38 +28,36 @@ export default function HomeScreen({ navigation }) {
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("Obstruction")}
-          accessible={true} // optional, this is the default
-          // accessibilityLabel={"Obstruction Detection button"} // overrides child content
-          // accessibilityTraits={"Obstruction Detection button"} // only works in ios
-          // accessibilityComponentType={"Obstruction Detection button"} // only works in android
+          accessible={true}
+          accessibilityRole="button"
+          accessibilityLabel={i18n.t("obstructionButton")} // IOS
+          accessibilityLabelledBy={"Obstruction Detection button"} // Android
           accessibilityHint={i18n.t("taptwicetoactivate")}
         // accessibilityState={{ selected: true }}
         >
-          <Text style={styles.textButton}>{i18n.t("obstruction")}</Text>
+          <Text style={styles.textButton} nativeID="Obstruction Detection button">{i18n.t("obstruction")}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("Object")}
-          accessible={true} // optional, this is the default
-          // accessibilityLabel={"Object Detection button"} // overrides child content
-          // accessibilityTraits={"Object Detection button"} // only works in ios
-          // accessibilityComponentType={"Object Detection button"} // only works in android
+          accessible={true}
+          accessibilityLabel={i18n.t("objectionButton")} // IOS
+          accessibilityLabelledBy={"Object Detection button"} // Android
           accessibilityHint={i18n.t("taptwicetoactivate")}
         // accessibilityState={{ selected: true }}
         >
-          <Text style={styles.textButton}>{i18n.t("object")}</Text>
+          <Text style={styles.textButton} nativeID="Object Detection button">{i18n.t("object")}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("Money")}
-          accessible={true} // optional, this is the default
-          // accessibilityLabel={"Money Detection button"} // overrides child content
-          // accessibilityTraits={"Money Detection button"} // only works in ios
-          // accessibilityComponentType={"Money Detection button"} // only works in android
+          accessible={true}
+          accessibilityLabel={i18n.t("moneyButton")} // IOS
+          accessibilityLabelledBy={"Money Detection button"} // Android
           accessibilityHint={i18n.t("taptwicetoactivate")}
         // accessibilityState={{ selected: true }}
         >
-          <Text style={styles.textButton}>{i18n.t("money")}</Text>
+          <Text style={styles.textButton} nativeID="Money Detection button">{i18n.t("money")}</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -69,19 +67,15 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
     backgroundColor: "#fff",
   },
   buttonContainer: {
     flex: 1,
-    // backgroundColor: 'pink',
     flexDirection: "column",
     alignItems: "center",
   },
   button: {
     backgroundColor: "orange",
-    borderRadius: 20,
     margin: 10,
     width: 350,
     height: 80,
