@@ -65,7 +65,7 @@ export default function MoneyDetectScreen() {
             {/* end */}
           </View>
           :
-          <Text className='text-4xl'>{i18n.t("loadingMoney")}</Text>
+          <Text className='text-4xl' accessible={true}>{i18n.t("loadingMoney")}</Text>
         }
       </>
       <StatusBar style="auto" />
