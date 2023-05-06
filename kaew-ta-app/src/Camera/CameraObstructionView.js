@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Camera, CameraType } from "expo-camera";
 import * as tf from "@tensorflow/tfjs";
 import { cameraWithTensors } from "@tensorflow/tfjs-react-native";
-import labels_Obstruction from '../utils/labels_Obstruction.json' // labels
+import labels_Obstruction from '../labels/labels_Obstruction.json' // labels
 import * as Speech from 'expo-speech'
 import { i18n } from "../../language/i18n";
 import { getLocales } from 'expo-localization';
