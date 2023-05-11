@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
 import { getLocales } from "expo-localization"; // Expo Localization
 import { useSelector, useDispatch } from "react-redux"; // Redux
@@ -23,41 +23,46 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View className="flex-1 bg-white">
-      <Text className="text-5xl text-center m-10">{i18n.t("mainMenu")}</Text>
+      <Text className="text-5xl text-center m-10 pt-1">{i18n.t("mainMenu")}</Text>
       <View className="flex-1 flex-col items-center">
         <TouchableOpacity
           style={styles.button}
+          className="bg-orange-400"
           onPress={() => navigation.navigate("Obstruction")}
           accessible={true}
           accessibilityRole="button"
           accessibilityLabel={i18n.t("obstructionButton")} // IOS
-          accessibilityLabelledBy={"Obstruction Detection button"} // Android
-          accessibilityHint={i18n.t("taptwicetoactivate")}
+          accessibilityLabelledBy={"Obstruction Detection button"} // Android (Voice assistant is only work in english language)
+          accessibilityHint={i18n.t("accessibilityHintObstruction")}
         // accessibilityState={{ selected: true }}
         >
-          <Text style={styles.textButton} nativeID="Obstruction Detection button">{i18n.t("obstruction")}</Text>
+          <Text style={styles.textButton} className='pt-1' nativeID="Obstruction Detection button">{i18n.t("obstruction")}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
+          className="bg-orange-400"
           onPress={() => navigation.navigate("Object")}
           accessible={true}
+          accessibilityRole="button"
           accessibilityLabel={i18n.t("objectionButton")} // IOS
-          accessibilityLabelledBy={"Object Detection button"} // Android
-          accessibilityHint={i18n.t("taptwicetoactivate")}
+          accessibilityLabelledBy={"Object Detection button"} // Android (Voice assistant is only work in english language)
+          accessibilityHint={i18n.t("accessibilityHintObject")}
         // accessibilityState={{ selected: true }}
         >
-          <Text style={styles.textButton} nativeID="Object Detection button">{i18n.t("object")}</Text>
+          <Text style={styles.textButton} className='pt-1' nativeID="Object Detection button">{i18n.t("object")}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
+          className="bg-orange-400"
           onPress={() => navigation.navigate("Money")}
           accessible={true}
+          accessibilityRole="button"
           accessibilityLabel={i18n.t("moneyButton")} // IOS
-          accessibilityLabelledBy={"Money Detection button"} // Android
-          accessibilityHint={i18n.t("taptwicetoactivate")}
+          accessibilityLabelledBy={"Money Detection button"} // Android (Voice assistant is only work in english language)
+          accessibilityHint={i18n.t("accessibilityHintMoney")}
         // accessibilityState={{ selected: true }}
         >
-          <Text style={styles.textButton} nativeID="Money Detection button">{i18n.t("money")}</Text>
+          <Text style={styles.textButton} className='pt-1' nativeID="Money Detection button">{i18n.t("money")}</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -75,14 +80,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   button: {
-    backgroundColor: "orange",
     margin: 10,
-    width: 350,
-    height: 80,
+    width: '95%',
+    height: '27%',
     alignItems: "center",
     justifyContent: "center",
   },
   textButton: {
-    fontSize: 25,
+    fontSize: 48,
+    // fontWeight: 'bold'
   },
 });
