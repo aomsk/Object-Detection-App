@@ -107,7 +107,7 @@ const CameraObjectView = ({ ctx, model, inputTensorSize, type, config }) => {
         autorender={true}
       />
       <View className='flex-1 justify-center items-center'>
-        <Text className='text-4xl text-red-600 font-bold'>
+        <Text className='text-6xl pt-2 text-red-600 font-bold'>
           {i18n.t(className) !== '[missing "th." translation]' && i18n.t(className) !== '[missing "en." translation]' ? i18n.t(className) : null}
         </Text>
       </View>

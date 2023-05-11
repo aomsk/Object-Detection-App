@@ -42,7 +42,7 @@ export default function ObstructionDetectScreen() {
       <>
         {model ?
           <View className="flex-1 w-full h-full">
-            <View className="flex-1 w-full h-full z-0 items-center bg-gray-500">
+            <View className="flex-1 w-full h-full z-0 items-center bg-black">
               <CameraObstructionView
                 model={model}
                 inputTensorSize={inputTensor}
@@ -63,7 +63,7 @@ export default function ObstructionDetectScreen() {
             {/* end */}
           </View>
           :
-          <Text className='text-4xl' accessible={true}>{i18n.t("loadingObstruc")}</Text>
+          <Text className='text-4xl pt-1' accessible={true}>{i18n.t("loadingObstruc")}</Text>
         }
       </>
       <StatusBar style="auto" />
