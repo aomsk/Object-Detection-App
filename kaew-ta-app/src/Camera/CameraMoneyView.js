@@ -43,6 +43,34 @@ const CameraMoneyView = ({ model, inputTensorSize, config }) => {
             setClassName(klass)
 
             if (deviceLanguage === 'th' && Platform.OS === 'ios') {
+              if (klass == 'oneBaht') {
+                Speech.speak('หนึ่งบาท',
+                  {
+                    language: 'th',
+                  }
+                );
+              }
+              if (klass == 'twoBaht') {
+                Speech.speak('สองบาท',
+                  {
+                    language: 'th',
+                  }
+                );
+              }
+              if (klass == 'fiveBaht') {
+                Speech.speak('ห้าบาท',
+                  {
+                    language: 'th',
+                  }
+                );
+              }
+              if (klass == 'tenBaht') {
+                Speech.speak('สิบบาท',
+                  {
+                    language: 'th',
+                  }
+                );
+              }
               if (klass == 'twentyBaht') {
                 Speech.speak('ธนบัตรยี่สิบบาท',
                   {
