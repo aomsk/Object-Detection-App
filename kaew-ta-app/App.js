@@ -59,7 +59,7 @@ export default function App() {
   }
 
   if (!permission?.granted) {
-    Speech.speak(i18n.t("cameraPermission"), { language: deviceLanguage, })
+    // Speech.speak(i18n.t("cameraPermission"), { language: deviceLanguage, })
     return
     // return (
     //   <View className='flex-1 bg-white items-center justify-center'>

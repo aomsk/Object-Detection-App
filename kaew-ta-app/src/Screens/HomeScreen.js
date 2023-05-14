@@ -30,7 +30,7 @@ export default function HomeScreen({ navigation }) {
           className="bg-orange-400"
           onPress={() => navigation.navigate("Obstruction")}
           accessible={true}
-          accessibilityRole="button"
+          // accessibilityRole="button"
           accessibilityLabel={i18n.t("obstructionButton")} // IOS
           accessibilityLabelledBy={"Obstruction Detection button"} // Android (Voice assistant is only work in english language)
           accessibilityHint={i18n.t("accessibilityHintObstruction")}
@@ -43,7 +43,7 @@ export default function HomeScreen({ navigation }) {
           className="bg-orange-400"
           onPress={() => navigation.navigate("Object")}
           accessible={true}
-          accessibilityRole="button"
+          // accessibilityRole="button"
           accessibilityLabel={i18n.t("objectionButton")} // IOS
           accessibilityLabelledBy={"Object Detection button"} // Android (Voice assistant is only work in english language)
           accessibilityHint={i18n.t("accessibilityHintObject")}
@@ -56,7 +56,7 @@ export default function HomeScreen({ navigation }) {
           className="bg-orange-400"
           onPress={() => navigation.navigate("Money")}
           accessible={true}
-          accessibilityRole="button"
+          // accessibilityRole="button"
           accessibilityLabel={i18n.t("moneyButton")} // IOS
           accessibilityLabelledBy={"Money Detection button"} // Android (Voice assistant is only work in english language)
           accessibilityHint={i18n.t("accessibilityHintMoney")}
