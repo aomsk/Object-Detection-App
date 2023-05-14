@@ -65,7 +65,7 @@ export const i18n = new I18n({
     headtxtMoney: "เงินและเหรียญ",
     headtxtObject: "วัตถุ",
     headtxtObstruc: "สิ่งกีดขวาง",
-    cameraPermission: "แอปพลิเคชันต้องการที่จะเข้าถึงกล้อง",
+    cameraPermission: "แก้วตา ต้องการเข้าถึงกล้อง",
     btnGrantPermis: "อนุญาต",
     mainMenu: 'เมนูหลัก',
     // taptwicetoactivate: "แตะ 2 ครั้ง เพื่อเปิด",
