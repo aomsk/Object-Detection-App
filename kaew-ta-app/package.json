@@ -21,6 +21,7 @@
     "expo-gl-cpp": "^11.4.0",
     "expo-localization": "~14.0.0",
     "expo-speech": "~11.0.0",
+    "expo-splash-screen": "~0.17.5",
     "expo-status-bar": "~1.4.2",
     "i18n-js": "^4.2.3",
     "nativewind": "^2.0.11",
