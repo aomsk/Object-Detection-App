@@ -63,7 +63,7 @@ export default function ObjectDetectScreen() {
             {/* end */}
           </View>
           :
-          <Text className='text-4xl pt-1' accessible={true}>{i18n.t("loadingObject")}</Text>
+          <Text className='text-4xl text-center pt-1' accessible={true}>{i18n.t("loadingObject")}</Text>
         }
       </>
       <StatusBar style="auto" />

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, LogBox } from "react-native";
 import React from "react";
 import { getLocales } from "expo-localization"; // Expo Localization
 import { useSelector, useDispatch } from "react-redux"; // Redux
@@ -21,6 +21,9 @@ export default function HomeScreen({ navigation }) {
   );
   console.log("deviceLanguage_in_store: ", deviceLanguage_store);
 
+  //Ignore all log notifications
+  LogBox.ignoreAllLogs();
+
   return (
     <View className="flex-1 bg-white">
       <Text className="text-5xl text-center m-10 pt-1">{i18n.t("mainMenu")}</Text>
@@ -36,7 +39,7 @@ export default function HomeScreen({ navigation }) {
           accessibilityHint={i18n.t("accessibilityHintObstruction")}
         // accessibilityState={{ selected: true }}
         >
-          <Text style={styles.textButton} className='pt-1' nativeID="Obstruction Detection button">{i18n.t("obstruction")}</Text>
+          <Text style={styles.textButton} className='text-center pt-1' nativeID="Obstruction Detection button">{i18n.t("obstruction")}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
@@ -49,7 +52,7 @@ export default function HomeScreen({ navigation }) {
           accessibilityHint={i18n.t("accessibilityHintObject")}
         // accessibilityState={{ selected: true }}
         >
-          <Text style={styles.textButton} className='pt-1' nativeID="Object Detection button">{i18n.t("object")}</Text>
+          <Text style={styles.textButton} className='text-center pt-1' nativeID="Object Detection button">{i18n.t("object")}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
@@ -62,7 +65,7 @@ export default function HomeScreen({ navigation }) {
           accessibilityHint={i18n.t("accessibilityHintMoney")}
         // accessibilityState={{ selected: true }}
         >
-          <Text style={styles.textButton} className='pt-1' nativeID="Money Detection button">{i18n.t("money")}</Text>
+          <Text style={styles.textButton} className='text-center pt-1' nativeID="Money Detection button">{i18n.t("money")}</Text>
         </TouchableOpacity>
       </View>
     </View>

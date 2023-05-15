@@ -58,7 +58,7 @@ export const i18n = new I18n({
     obstruction: "สิ่งกีดขวาง",
     object: "วัตถุ",
     money: "ธนบัตรและเหรียญ",
-    loadingMoney: "กำลังโหลดโมเดลเงินและเหรียญ",
+    loadingMoney: "กำลังโหลดโมเดลธนบัตรและเหรียญ",
     loadingObject: "กำลังโหลดโมเดลวัตถุ",
     loadingObstruc: "กำลังโหลดโมเดลสิ่งกีดขวาง",
     headtxtHome: "หน้าหลัก",
