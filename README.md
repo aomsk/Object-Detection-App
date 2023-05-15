@@ -12,7 +12,7 @@ This project is a part of PROJECT IN SOFTWARE ENGINEERING 1&2 1/2022 and 2/2022
 # TODO :blush:
 * Detect 3 types of obstacles
 * Detect 3 types of Objects
-* Detect 5 types of Money
+* Detect 9 types of Money
 
 # **Steps to Run!** :smile:
 
