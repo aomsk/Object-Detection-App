@@ -106,7 +106,7 @@ const CameraObstructionView = ({ model, inputTensorSize, config }) => {
         autorender={true}
       />
       <View className='flex-1 justify-center items-center'>
-        <Text className='text-4xl text-red-600 font-bold'>
+        <Text className='text-4xl text-red-600 font-bold text-center'>
           {i18n.t(className) !== '[missing "th." translation]' && i18n.t(className) !== '[missing "en." translation]' ? i18n.t(className) : null}
         </Text>
       </View>

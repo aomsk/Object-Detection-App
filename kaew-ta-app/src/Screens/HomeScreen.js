@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     height: '27%',
     alignItems: "center",
     justifyContent: "center",
+    borderRadius: 20
   },
   textButton: {
     fontSize: 48,
