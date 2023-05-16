@@ -1,6 +1,6 @@
 import { Text, View, useWindowDimensions, LogBox } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { StatusBar } from 'expo-status-bar'
+// import { StatusBar } from 'expo-status-bar'
 import { loadObstructionModel } from '../LoadModel/LoadObstructionModel' // Load Model
 import * as tf from '@tensorflow/tfjs' // TensorFlow
 import '@tensorflow/tfjs-react-native' // TensorFlow
@@ -39,6 +39,7 @@ export default function ObstructionDetectScreen() {
 
   return (
     <View className="flex-1 items-center justify-center bg-white">
+      {/* <StatusBar style="auto" /> */}
       <>
         {model ?
           <View className="flex-1 w-full h-full">
@@ -66,7 +67,6 @@ export default function ObstructionDetectScreen() {
           <Text className='text-4xl text-center pt-1' accessible={true}>{i18n.t("loadingObstruc")}</Text>
         }
       </>
-      <StatusBar style="auto" />
     </View>
   )
 }

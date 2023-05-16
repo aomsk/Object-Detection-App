@@ -4,6 +4,7 @@ import { getLocales } from "expo-localization"; // Expo Localization
 import { useSelector, useDispatch } from "react-redux"; // Redux
 import { checkDeviceLanguage } from "../../store/actions/DeviceLanguageAction";
 import { i18n } from "../../language/i18n"; // I18n
+// import { StatusBar } from "expo-status-bar";
 
 export default function HomeScreen({ navigation }) {
   const deviceLanguage = getLocales()[0].languageCode;
@@ -26,6 +27,7 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View className="flex-1 bg-white">
+      {/* <StatusBar style="auto" /> */}
       <Text className="text-5xl text-center m-10 pt-1">{i18n.t("mainMenu")}</Text>
       <View className="flex-1 flex-col items-center">
         <TouchableOpacity

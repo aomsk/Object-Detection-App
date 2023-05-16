@@ -71,6 +71,7 @@ export default function App() {
 
   return (
     <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
+      <StatusBar hidden="auto" />
       <Provider store={store}>
         {permission?.granted && <StackNavigation />}
       </Provider>

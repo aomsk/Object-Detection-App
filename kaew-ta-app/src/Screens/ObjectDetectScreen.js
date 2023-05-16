@@ -1,6 +1,6 @@
 import { Text, View, useWindowDimensions, LogBox } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { StatusBar } from 'expo-status-bar'
+// import { StatusBar } from 'expo-status-bar'
 import { loadObjectModel } from '../LoadModel/LoadObjectModel' // Load Model
 import * as tf from '@tensorflow/tfjs' // TensorFlow
 import '@tensorflow/tfjs-react-native' // TensorFlow
@@ -39,6 +39,7 @@ export default function ObjectDetectScreen() {
 
   return (
     <View className="flex-1 items-center justify-center bg-white">
+      {/* <StatusBar style="auto" /> */}
       <>
         {model ?
           <View className="flex-1 w-full h-full">
@@ -66,7 +67,6 @@ export default function ObjectDetectScreen() {
           <Text className='text-4xl text-center pt-1' accessible={true}>{i18n.t("loadingObject")}</Text>
         }
       </>
-      <StatusBar style="auto" />
     </View>
   );
 };
