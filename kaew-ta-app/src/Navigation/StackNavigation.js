@@ -13,7 +13,12 @@ const StackNavigation = () => {
   const Stack = createNativeStackNavigator()
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{
+        // headerLeft: () => <FontAwesome5 name="home" size={24} color="black" />,
+        headerStyle: {
+          backgroundColor: '#FB923C'
+        }
+      }}>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Obstruction" component={ObstructionDetectScreen} />
         <Stack.Screen name="Object" component={ObjectDetectScreen} />
