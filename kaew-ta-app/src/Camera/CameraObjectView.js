@@ -10,7 +10,7 @@ import { getLocales } from 'expo-localization';
 
 const TensorCamera = cameraWithTensors(Camera);
 
-const CameraObjectView = ({ ctx, model, inputTensorSize, type, config }) => {
+const CameraObjectView = ({ model, inputTensorSize, config }) => {
   const [className, setClassName] = useState('')
 
   // Check local language in device
