@@ -2,7 +2,7 @@ import { I18n } from "i18n-js";
 export const i18n = new I18n({
   en: {
     billBoard: "BillBoard",
-    electric: "Electric pole",
+    electricPole: "Electric pole",
     sofa: "Sofa",
     table: "Table",
     cup: "Cup",

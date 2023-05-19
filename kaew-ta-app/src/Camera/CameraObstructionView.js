@@ -50,7 +50,7 @@ const CameraObstructionView = ({ ctx, model, inputTensorSize, type, config }) =>
                   }
                 );
               }
-              if (klass == 'electric') {
+              if (klass == 'electricPole') {
                 Speech.speak('เสาไฟฟ้า',
                   {
                     language: 'th',
