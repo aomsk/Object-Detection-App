@@ -13,7 +13,7 @@ export default function HomeScreen({ navigation }) {
   // When a value is missing from a language it'll fall back to another language with the key present.
   i18n.enableFallback = true;
 
-  // LogBox.ignoreAllLogs();
+  LogBox.ignoreAllLogs();
 
   // Redux
   const dispacth = useDispatch();
