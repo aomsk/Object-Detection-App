@@ -2,7 +2,7 @@ import { I18n } from "i18n-js";
 export const i18n = new I18n({
   en: {
     billBoard: "BillBoard",
-    electric: "Electric",
+    electricPole: "Electric Pole",
     sofa: "Sofa",
     table: "Table",
     cup: "Cup",
@@ -40,7 +40,7 @@ export const i18n = new I18n({
   },
   th: {
     billBoard: "ป้ายโฆษณา",
-    electric: "เสาไฟฟ้า",
+    electricPole: "เสาไฟฟ้า",
     sofa: "โซฟา",
     table: "โต๊ะ",
     cup: "แก้ว",
