@@ -44,28 +44,28 @@ const CameraMoneyView = ({ model, inputTensorSize, config }) => {
 
             if (deviceLanguage === 'th' && Platform.OS === 'ios') {
               if (klass == 'oneBaht') {
-                Speech.speak('หนึ่งบาท',
+                Speech.speak('เหรียญหนึ่งบาท',
                   {
                     language: 'th',
                   }
                 );
               }
               if (klass == 'twoBaht') {
-                Speech.speak('สองบาท',
+                Speech.speak('เหรียญสองบาท',
                   {
                     language: 'th',
                   }
                 );
               }
               if (klass == 'fiveBaht') {
-                Speech.speak('ห้าบาท',
+                Speech.speak('เหรียญห้าบาท',
                   {
                     language: 'th',
                   }
                 );
               }
               if (klass == 'tenBaht') {
-                Speech.speak('สิบบาท',
+                Speech.speak('เหรียญสิบบาท',
                   {
                     language: 'th',
                   }
@@ -141,7 +141,7 @@ const CameraMoneyView = ({ model, inputTensorSize, config }) => {
         autorender={true}
       />
       <View className='flex-1 justify-center items-center'>
-        <Text className='text-4xl text-red-600 font-bold text-center'>
+        <Text className='text-4xl text-red-600 font-bold text-center p-2'>
           {i18n.t(className) !== '[missing "th." translation]' && i18n.t(className) !== '[missing "en." translation]' ? i18n.t(className) : null}
         </Text>
       </View>
