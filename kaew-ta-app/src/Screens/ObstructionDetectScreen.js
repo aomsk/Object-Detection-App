@@ -63,7 +63,7 @@ export default function ObstructionDetectScreen() {
             {/* end */}
           </View>
           :
-          <Text className='text-4xl pt-1' accessible={true}>{i18n.t("loadingObstruc")}</Text>
+          <Text className='text-4xl text-center pt-1' accessible={true}>{i18n.t("loadingObstruc")}</Text>
         }
       </>
       <StatusBar style="auto" />
