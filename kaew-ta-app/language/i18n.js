@@ -33,7 +33,7 @@ export const i18n = new I18n({
     // taptwicetoactivate: "Tap twice to activate",
     accessibilityHintObstruction: "Detects obstacles such as electricity poles, billboards, tables and sofas. Double-tap to open.",
     accessibilityHintObject: "Detects objects such as glasses, plates and spoons, double-tap to open.",
-    accessibilityHintMoney: "Detects banknotes and coins such as two baht, five baht, ten baht, twenty baht, fifty, one hundred, five hundred and one thousand notes. Tap twice to open.",
+    accessibilityHintMoney: "Detects banknotes and coins such as one baht, two baht, five baht, ten baht, twenty baht, fifty baht, one hundred baht, five hundred baht and one thousand baht. Tap twice to open.",
     obstructionButton: "Obstruction Detection Button",
     objectionButton: "Object Detection Button",
     moneyButton: "Money&Coin Detection Button",
