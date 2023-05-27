@@ -1,4 +1,4 @@
-# Kaew-ta App :iphone:
+# Kaew-ta App 📱
 
 ### APPLICATION DEVELOPMENT TO DETECT OBSTACLES AND OBJECTS FOR VISUALLY IMPAIRED PEOPLE USING MACHINE LEARNING
 
@@ -12,13 +12,13 @@ This project is a part of PROJECT IN SOFTWARE ENGINEERING 1&2 1/2022 and 2/2022
 
 [![diagrams.net](https://img.shields.io/static/v1?label=&message=diagrams.net&color=%2320232A&style=for-the-badge&logo=diagrams.net)](https://app.diagrams.net/#G1Bg4rdSzIdEJlZb7M2nmWu-_ESmLxu0qG)
 
-# TODO :blush:
+# TODO 😊
 
 - **Detects 4 types of obstacles ==>** `sofa`, `table`, `billboards`, and `electric poles`.
 - **Detects 3 types of objects ==>** `glasses`, `plates` and `spoons`.
 - **Detect 9 types of money ==>** `one baht`, `two baht`, `five baht`, `ten baht`, `twenty baht`, `fifty baht`, `one hundred baht`, `five hundred baht` and `one thousand baht`.
 
-# **Steps to Run!** :smile:
+# **Steps to Run!** 😘
 
 ```
   1. cd kaew-ta App
@@ -26,3 +26,11 @@ This project is a part of PROJECT IN SOFTWARE ENGINEERING 1&2 1/2022 and 2/2022
   3. yarn start
   4. scan QR CODE
 ```
+# **Bug ?** 🥲😓
+
+when running the application in android Then select the detection mode, must press save 1 time to be able to detect. If not, press save and return to the main menu where the terminal will alert.
+```
+WARN  Possible Unhandled Promise Rejection (id: 0):
+Error: ExponentGLObjectManager.createCameraTextureAsync: GLContext not found for given context id
+```
+But in iOS it can be used normally. and load the model faster and work more stable as well
