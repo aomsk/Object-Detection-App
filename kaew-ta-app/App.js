@@ -10,7 +10,6 @@ import { i18n } from "../kaew-ta-app/language/i18n"; // Language
 import React, { useCallback, useEffect, useState } from 'react';
 import { View } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
-import * as Speech from 'expo-speech'
 
 const rootReducer = combineReducers({
   deviceLangRoot: DeviceLanguageReducer
@@ -71,7 +70,7 @@ export default function App() {
 
   return (
     <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
-      <StatusBar hidden="auto" />
+      <StatusBar style="auto" />
       <Provider store={store}>
         {permission?.granted && <StackNavigation />}
       </Provider>

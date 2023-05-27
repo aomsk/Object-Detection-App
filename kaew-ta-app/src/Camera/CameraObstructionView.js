@@ -10,7 +10,7 @@ import { getLocales } from 'expo-localization';
 
 const TensorCamera = cameraWithTensors(Camera);
 
-const CameraObstructionView = ({ model, inputTensorSize, config }) => {
+const CameraObstructionView = ({ ctx, model, inputTensorSize, type, config }) => {
   const [className, setClassName] = useState('')
 
   // Check local language in device
@@ -50,7 +50,7 @@ const CameraObstructionView = ({ model, inputTensorSize, config }) => {
                   }
                 );
               }
-              if (klass == 'electric') {
+              if (klass == 'electricPole') {
                 Speech.speak('เสาไฟฟ้า',
                   {
                     language: 'th',
