@@ -21,16 +21,19 @@ This project is a part of PROJECT IN SOFTWARE ENGINEERING 1&2 1/2022 and 2/2022
 # **Steps to Run!** 😘
 
 ```
-  1. cd kaew-ta App
+  1. cd kaew-ta-app
   2. yarn install
   3. yarn start
   4. scan QR CODE
 ```
+
 # **Bug ?** 🥲😓
 
 when running the application in android Then select the detection mode, must press save 1 time to be able to detect. If not, press save and return to the main menu where the terminal will alert.
+
 ```
 WARN  Possible Unhandled Promise Rejection (id: 0):
 Error: ExponentGLObjectManager.createCameraTextureAsync: GLContext not found for given context id
 ```
+
 But in iOS it can be used normally. and load the model faster and work more stable as well
