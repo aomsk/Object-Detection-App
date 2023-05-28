@@ -19,10 +19,12 @@ This project is a part of PROJECT IN SOFTWARE ENGINEERING 1&2 1/2022 and 2/2022
 - **Detect 9 types of money ==>** `one baht`, `two baht`, `five baht`, `ten baht`, `twenty baht`, `fifty baht`, `one hundred baht`, `five hundred baht` and `one thousand baht`.
 - **support accessibility in Android and iOS**
 - **A voice reads the names of obstacles, objects, notes and coins in response to the user.**
+- **support language is Thai and English**
 
 # **Steps to Run!** 😘
 
 ```
+Please test application on real device
   1. cd kaew-ta-app
   2. yarn install
   3. yarn start
