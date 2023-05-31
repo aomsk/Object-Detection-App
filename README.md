@@ -24,7 +24,9 @@ This project is a part of PROJECT IN SOFTWARE ENGINEERING 1&2 1/2022 and 2/2022
 # **Steps to Run!** 😘
 
 ```
-Please test application on real device
+* Please test application on real device
+* Recommend use iOS device to test application
+
   1. cd kaew-ta-app
   2. yarn install
   3. yarn start
