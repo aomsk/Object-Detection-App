@@ -10,7 +10,7 @@ This project is a part of PROJECT IN SOFTWARE ENGINEERING 1&2 1/2022 and 2/2022
 
 ### **Flow Design**
 
-[![diagrams.net](https://img.shields.io/static/v1?label=&message=diagrams.net&color=%2320232A&style=for-the-badge&logo=diagrams.net)](https://app.diagrams.net/#G1Bg4rdSzIdEJlZb7M2nmWu-_ESmLxu0qG)
+[![diagrams.net](https://img.shields.io/static/v1?label=&message=diagrams.net&color=%2320232A&style=for-the-badge&logo=diagrams.net)](https://drive.google.com/file/d/1Bg4rdSzIdEJlZb7M2nmWu-_ESmLxu0qG/view?usp=sharing)
 
 # Feature 😊
 
